@@ -1,11 +1,11 @@
-## Desafio REACT | GAMA | ACCENTURE
+## GAMA BANK
 
 ![screen](./screen.png)
 
 Para iniciar seu projeto você deve:
 Baixar o repositório e instalar todas as dependências usando `yarn` ou `npm i`.
 
-Para iniciar o projeto em modo desenvolvimento use o comando `yarn start` ou `npm run start`.
+Para iniciar o projeto em modo desenvolvimento use o comando `yarn start` ou `npm start`.
 
 # Para cumprir seu desafio você deve:
 
@@ -25,7 +25,7 @@ Para iniciar o projeto em modo desenvolvimento use o comando `yarn start` ou `np
 
 8 - Sua aplicação deve ter as mesmas funcionalidades da versão que disponibilizamos online, você pode acessar clicando [aqui](https://react-accenture.vercel.app/).
 
-9 - Link de sua To do deve acompanhar na documentação de seu projeto.
+9 - Link de sua To-Do deve acompanhar na documentação de seu projeto.
 
 
 [Swagger](https://accenture-java-desafio.herokuapp.com/swagger-ui.html#/)
@@ -42,4 +42,4 @@ Para iniciar o projeto em modo desenvolvimento use o comando `yarn start` ou `np
 
 
 Boa sorte!
-Att: Douglas 
+Att: Douglas

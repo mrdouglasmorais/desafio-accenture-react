@@ -56,7 +56,7 @@ const RecoverPassword: React.FC = () => {
             console.log(err)
             toast.error('Preencha com um usuário válido!')
             if (Object.keys(err).includes('isAxiosError')) {
-                history.push('/error')
+                history.push('/error-recover')
             }
         } finally {
             setLoading(false)

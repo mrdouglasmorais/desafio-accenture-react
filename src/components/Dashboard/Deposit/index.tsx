@@ -26,7 +26,7 @@ const Deposit: React.FC = () => {
   const store = useSelector((state: ApplicationStore) => state.user)
   const formRef = useRef<FormHandles>(null)
 
-  const handleSubmit = useCallback(async (dataProps: object) => {
+  const handleSubmit = useCallback(async (dataProps: Record<string, unknown>) => {
     const date = new Date()
     const referenceDate = new Date(date.setDate(date.getDate() - 1))
     const depositDate = new Date(data)

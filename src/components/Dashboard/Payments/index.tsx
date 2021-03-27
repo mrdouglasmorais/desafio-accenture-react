@@ -16,6 +16,7 @@ import getValidationErrors from '../../../utils/getValidationErrors'
 import Loader from '../../Loader'
 
 interface PaymentsProps {
+  // eslint-disable-next-line @typescript-eslint/ban-types
   func: Function;
 }
 
@@ -32,7 +33,7 @@ const Payments: React.FC<PaymentsProps> = (props) => {
 
   const store = useSelector((state: ApplicationStore) => state.user)
 
-  const handleSubmit = useCallback(async (dataProps: object) => {
+  const handleSubmit = useCallback(async (dataProps: Record<string, unknown>) => {
 
     const date = new Date()
     const referenceDate = new Date(date.setDate(date.getDate() - 1))
@@ -119,7 +120,7 @@ const Payments: React.FC<PaymentsProps> = (props) => {
 
       if ( err.response && err.response.status === 400 )
         toast.error('Usuário não encontrado!')
-      
+
     } finally {
       setLoading(false)
     }

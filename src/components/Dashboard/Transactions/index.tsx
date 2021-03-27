@@ -22,15 +22,14 @@ const Transactions: React.FC = () => {
 
   const formatDate = useCallback((date:string) => {
     setLoaded(false)
-    
-    let d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear()
 
-    if (month.length < 2) 
+    const d = new Date(date)
+    let month = '' + (d.getMonth() + 1), day = '' + d.getDate()
+    const year = d.getFullYear()
+
+    if (month.length < 2)
         month = '0' + month
-    if (day.length < 2) 
+    if (day.length < 2)
         day = '0' + day
 
     return [year, month, day].join('-')
@@ -54,7 +53,7 @@ const Transactions: React.FC = () => {
 
         const date = new Date()
         const newD = new Date()
-        const newDate = new Date(date.setMonth(date.getMonth()-referenceDate))      
+        const newDate = new Date(date.setMonth(date.getMonth()-referenceDate))
         const dateFormated = (newD.getFullYear() + "-" + ((newD.getMonth() + 1)) + "-" + (newD.getDate() ))
         const newDateFormated = (newDate.getFullYear() + "-" + ((newDate.getMonth() + 1)) + "-" + (newDate.getDate() ))
         const result = await api.get(`/dashboard?fim=${formatDate(dateFormated)}&inicio=${formatDate(newDateFormated)}&login=${user?.login}`, {
@@ -64,7 +63,7 @@ const Transactions: React.FC = () => {
         })
         setContas(result.data)
         setLoaded(true)
-       
+
       }catch (err) {
         console.log(err)
       }
@@ -75,13 +74,13 @@ const Transactions: React.FC = () => {
 
   const updateReference = (event:ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value)
-    if (value > 0 && value <= 12) 
+    if (value > 0 && value <= 12)
       setReferenceDate(value)
-  } 
+  }
 
   if ( loaded )return (
     <div>
-      {/* Componente para página principal */}      
+      {/* Componente para página principal */}
 
       <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito}/>
 
@@ -96,7 +95,7 @@ const Transactions: React.FC = () => {
     </div>
   )
   else return <Loader style={{ border: '4px solid #f0f0f0' }} />
-  
+
 }
 
 export default Transactions

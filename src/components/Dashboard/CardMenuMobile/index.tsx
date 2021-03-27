@@ -4,6 +4,7 @@ import pixIcon from '../../../assets/svgs/pix-icon.svg'
 
 interface ComponentProp {
     title: string;
+    // eslint-disable-next-line @typescript-eslint/ban-types
     func: Function;
 }
 

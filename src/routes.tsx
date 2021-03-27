@@ -30,6 +30,7 @@ const Routes: React.FC = () => {
                 {/* Rotas */}
                 <Route path="/" exact component={Landing} />
                 <UnauthRoute path="/login" component={Login} />
+                <PrivateRoute path="/dashboard" component={Dashboard} />
             </Switch>
         </BrowserRouter>
     )

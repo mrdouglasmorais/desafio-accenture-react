@@ -9,8 +9,6 @@ import getIsAuth from '../../services/getIsAuth'
 import getValidationErrors from '../../utils/getValidationErrors'
 import { maskCPF, removeMaskCPF } from '../../utils/mask'
 
-
-
 import Header from '../../components/Header'
 import Input from '../../components/Input'
 import Loader from '../../components/Loader'
@@ -20,6 +18,15 @@ import { toast } from 'react-toastify'
 import { AnyObject } from '../../types/utils'
 import { UserResponse } from '../../types/user'
 import updateReduxState from '../../services/updateReduxState'
+
+const fakeDanger = {
+  background: 'red'
+}
+
+const fakePositive = {
+  background: 'green'
+}
+
 
 const Landing: React.FC = () => {
   const [username, setUsername] = useState('')
@@ -36,20 +43,23 @@ const Landing: React.FC = () => {
 
   // Atualiza a mascara do CPF
   useEffect(() => {
-    // devemos setar o estado
+    setCpf(removeMaskCPF(cpfMask))
   }, [cpfMask])
 
-  // Atualiza se todos os campos estão preenchidos para deixar o botão de confirmar verde
   useEffect(() => {
-    if ( name.length > 3 && 
-      password && 
-      confirmPassword && 
-      cpf.length === 11 && 
+    if ( name.length > 3 &&
+      password &&
+      confirmPassword &&
+      cpf.length === 11 &&
       username ) setIsFilled(true)
     else setIsFilled(false)
   }, [
-    
-    // devemos informar os elementos utilizados
+    name,
+    username,
+    password,
+    confirmPassword,
+    cpf,
+    username
   ])
 
   // Lidar com o registro
@@ -152,7 +162,14 @@ const Landing: React.FC = () => {
                 <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
                 <Input name="password" value={password} type="password" onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" />
                 <Input name="confirmPassword" value={confirmPassword} type="password" onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua senha" />
-                {loading ? <Loader /> : <button type="submit">Continuar<FaArrowRight className="ArrowRight" /></button>}
+
+                {
+                  loading
+                  ? <Loader />
+                  : <button style={ isFilled ? fakePositive : fakeDanger} type="submit">Continuar<FaArrowRight
+                  className={'ArrowRight negative'} /></button>
+                }
+                {/* <button type="submit">Continuar<FaArrowRight className="ArrowRight" /></button> */}
               </Form>
             </div>
           </div>

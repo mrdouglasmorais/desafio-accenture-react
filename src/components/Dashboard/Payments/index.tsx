@@ -20,7 +20,7 @@ interface PaymentsProps {
   func: Function;
 }
 
-const Payments: React.FC<PaymentsProps> = (props) => {
+const Payments: React.FC<PaymentsProps> = () => {
 
   const dispatch = useDispatch()
 
@@ -161,7 +161,6 @@ const Payments: React.FC<PaymentsProps> = (props) => {
               </button>
             )}
         </Form>
-
 
       </div>
     </>

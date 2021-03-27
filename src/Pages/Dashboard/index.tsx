@@ -33,14 +33,14 @@ const Dashboard: React.FC = () => {
   const handleLogOut = useCallback((accepted: boolean) => {
     if ( accepted ) {
       dispatch(remove_user())
-  
+
       history.push('/')
     } else {
       setIsExiting(false)
     }
   }, [ dispatch, history ])
 
-  function setModal() { 
+  function setModal() {
     if(modalIsOpen === true)
       setIsOpen(false)
     else
@@ -73,9 +73,9 @@ const Dashboard: React.FC = () => {
         <FiAlignRight color="#fff" size={ 60 } onClick={() => setModal()} ></FiAlignRight>
         </div>
 
-      </div> 
+      </div>
       <div>
-        <nav>
+        <nav style={{background: '#999'}}>
           <img className="logo" src={gamaIcon} alt="Gama icon" />
           <CardMenu title='Depósitos' onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
           <CardMenu title='Planos' onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
@@ -87,7 +87,7 @@ const Dashboard: React.FC = () => {
           </button>
 
         </nav>
-        <main>
+        <main style={{background: '#ddd'}}>
           {/* Render component by currentScreen */}
           {currentScreen === 'Depósitos' && <Deposit />}
           {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}

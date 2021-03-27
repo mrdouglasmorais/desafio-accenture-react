@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react'
-import { Link, useHistory, Redirect } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { FaArrowRight } from 'react-icons/fa'
 import { Form } from '@unform/web'
@@ -54,7 +54,7 @@ const Login: React.FC = () => {
       localStorage.setItem('@user_name', response.usuario.nome)
       updateReduxState()
       toast.success('Seja bem-vindo(a)')
-      
+
       if (getIsAuth()) history.push('/dashboard')
       else history.push('/login')
 

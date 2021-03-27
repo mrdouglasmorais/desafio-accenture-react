@@ -1,19 +1,19 @@
-import React, {ChangeEvent, useCallback, useRef, useState } from 'react';
-import { Form } from '@unform/web';
+import React, {ChangeEvent, useCallback, useRef, useState } from 'react'
+import { Form } from '@unform/web'
 import { FaArrowRight } from 'react-icons/fa'
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import * as yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import * as yup from 'yup'
 
-import { ApplicationStore } from '../../../store';
-import api from '../../../services/api';
-import { Contas, Plano } from '../../../types/dash-board';
-import Input from '../../Input';
+import { ApplicationStore } from '../../../store'
+import api from '../../../services/api'
+import { Contas, Plano } from '../../../types/dash-board'
+import Input from '../../Input'
 
-import { change_screen, set_transaction_data } from '../../../store/dashboard/actions';
-import { FormHandles } from '@unform/core';
-import getValidationErrors from '../../../utils/getValidationErrors';
-import Loader from '../../Loader';
+import { change_screen, set_transaction_data } from '../../../store/dashboard/actions'
+import { FormHandles } from '@unform/core'
+import getValidationErrors from '../../../utils/getValidationErrors'
+import Loader from '../../Loader'
 
 interface PaymentsProps {
   func: Function;
@@ -21,74 +21,74 @@ interface PaymentsProps {
 
 const Payments: React.FC<PaymentsProps> = (props) => {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const [destinatario, setDestinatario] = useState('');
-  const [data, setData] = useState('');
-  const [descricao, setDescricao] = useState('');
-  const [valor, setValor] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const formRef = useRef<FormHandles>(null);
+  const [destinatario, setDestinatario] = useState('')
+  const [data, setData] = useState('')
+  const [descricao, setDescricao] = useState('')
+  const [valor, setValor] = useState(0)
+  const [loading, setLoading] = useState(false)
+  const formRef = useRef<FormHandles>(null)
 
-  const store = useSelector((state: ApplicationStore) => state.user);
+  const store = useSelector((state: ApplicationStore) => state.user)
 
   const handleSubmit = useCallback(async (dataProps: object) => {
 
-    const date = new Date();
-    const referenceDate = new Date(date.setDate(date.getDate() - 1));
-    const depositDate = new Date(data);
-    let stopApplication = false;
+    const date = new Date()
+    const referenceDate = new Date(date.setDate(date.getDate() - 1))
+    const depositDate = new Date(data)
+    let stopApplication = false
 
     if (destinatario.trim().length === 0) {
-      stopApplication = true;
-      toast.error('Login do destinatário não pode ser nulo');
-      stopApplication = true;
+      stopApplication = true
+      toast.error('Login do destinatário não pode ser nulo')
+      stopApplication = true
     }
     if (referenceDate > depositDate || data === '') {
-      toast.error('Escolha uma data válida');
-      stopApplication = true;
+      toast.error('Escolha uma data válida')
+      stopApplication = true
     }
     if (descricao.length < 3) {
-      toast.error('Descrição não pode ser nula');
-      stopApplication = true;
+      toast.error('Descrição não pode ser nula')
+      stopApplication = true
     }
     if (valor <= 0) {
-      toast.error('Valor para transferencia deve ser maior que 0');
-      stopApplication = true;
+      toast.error('Valor para transferencia deve ser maior que 0')
+      stopApplication = true
     }
 
-    setLoading(true);
+    setLoading(true)
     try {
-      formRef.current?.setErrors({});
+      formRef.current?.setErrors({})
 
       const schema = yup.object().shape({
         receiver: yup.string().required('Login do destinatário obrigatório'),
         date: yup.string().required('Obrigatório data'),
         description: yup.string().min(3, 'Obrigatório descrição (min. 3 caracteres)'),
         transferValue: yup.string().required('Obrigatório transferência (max. 10000)'),
-      });
+      })
 
       await schema.validate(dataProps, {
         abortEarly: false,
-      });
+      })
 
-      if (stopApplication) throw new Error('Something went wrong with request');
+      if (stopApplication) throw new Error('Something went wrong with request')
 
       const result = await api.get<Contas>(`/dashboard?fim=2021-02-22&inicio=2021-02-22&login=${store?.login}`, {
         headers: {
           Authorization: store?.token,
         }
-      });
+      })
 
       const resultPlan = await api.get<Plano[]>(`/lancamentos/planos-conta?login=${store?.login}`, {
         headers: {
           Authorization: store?.token,
         }
-      });
+      })
 
       if (result.data.contaBanco.saldo < valor) {
-        toast.error('Saldo insuficiente.');
-        return;
+        toast.error('Saldo insuficiente.')
+        return
       }
 
       const { status } = await api.post('/lancamentos', {
@@ -103,40 +103,40 @@ const Payments: React.FC<PaymentsProps> = (props) => {
         headers: {
           Authorization: store?.token,
         }
-      });
+      })
 
-      if (status !== 200) throw new Error('Something went wrong with request');
+      if (status !== 200) throw new Error('Something went wrong with request')
 
       dispatch(set_transaction_data(undefined))
-      dispatch(change_screen('Transações'));
+      dispatch(change_screen('Transações'))
 
-      toast.success('Transferência realizada com sucesso.');
-      clearForm();
+      toast.success('Transferência realizada com sucesso.')
+      clearForm()
     }
     catch (err) {
-      const errors = getValidationErrors(err);
-      formRef.current?.setErrors(errors);
+      const errors = getValidationErrors(err)
+      formRef.current?.setErrors(errors)
 
       if ( err.response && err.response.status === 400 )
-        toast.error('Usuário não encontrado!');
+        toast.error('Usuário não encontrado!')
       
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, [destinatario, data, descricao, valor, store?.login, store?.token, dispatch]);
+  }, [destinatario, data, descricao, valor, store?.login, store?.token, dispatch])
 
   function clearForm() {
-    setDestinatario('');
-    setData('');
-    setDescricao('');
-    setValor(0);
+    setDestinatario('')
+    setData('')
+    setDescricao('')
+    setValor(0)
   }
   const handleChangeValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const numberToAdd = Number(e.target.value);
+    const numberToAdd = Number(e.target.value)
 
-    if (numberToAdd > 10000) setValor(10000);
-    else setValor(numberToAdd);
-  }, []);
+    if (numberToAdd > 10000) setValor(10000)
+    else setValor(numberToAdd)
+  }, [])
 
   return (
     <>
@@ -164,8 +164,8 @@ const Payments: React.FC<PaymentsProps> = (props) => {
 
       </div>
     </>
-  );
+  )
 
 }
 
-export default Payments;
+export default Payments

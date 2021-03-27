@@ -1,6 +1,6 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from 'react'
 
-import pixIcon from '../../../assets/svgs/pix-icon.svg';
+import pixIcon from '../../../assets/svgs/pix-icon.svg'
 
 interface ComponentProp extends HTMLAttributes<HTMLDivElement> {
     title: string;
@@ -19,4 +19,4 @@ const CardMenu: React.FC<ComponentProp> = ( { selected, ...props } ) => {
     )
 }
 
-export default CardMenu;
+export default CardMenu

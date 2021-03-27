@@ -1,14 +1,14 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 
-import LogoSRC from '../../assets/main-logo.png';
+import LogoSRC from '../../assets/main-logo.png'
 
 const Logo: React.FC = () => {
-    const history = useHistory();
+    const history = useHistory()
 
     return (
         <img onClick={ () => history.push('/') } src={ LogoSRC } alt="Logo principal" />
-    );
+    )
 }
 
-export default Logo;
+export default Logo

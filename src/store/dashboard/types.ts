@@ -1,4 +1,4 @@
-import { Contas, Plano } from "../../types/dash-board";
+import { Contas, Plano } from "../../types/dash-board"
 
 export enum DashboardActions {
     CHANGE_SCREEN = 'CHANGE_SCREEN',

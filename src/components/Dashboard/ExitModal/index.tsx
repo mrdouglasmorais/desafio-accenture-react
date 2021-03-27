@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from 'react'
 
 
 interface ExitModalProps extends HTMLAttributes<HTMLDivElement> {
@@ -17,7 +17,7 @@ const ExitModal: React.FC<ExitModalProps> = ({ setResponse, ...props }) => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default ExitModal;
+export default ExitModal

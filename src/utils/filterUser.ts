@@ -1,4 +1,4 @@
-import { FilteredUser, UserResponse } from "../types/user";
+import { FilteredUser, UserResponse } from "../types/user"
 
 export default function filterUser(user: UserResponse): FilteredUser {
     return {

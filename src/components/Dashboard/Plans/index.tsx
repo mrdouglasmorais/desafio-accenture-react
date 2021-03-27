@@ -1,57 +1,57 @@
-import React, { ChangeEvent, Dispatch, FormEvent, HTMLAttributes, SetStateAction, useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ApplicationStore } from '../../../store';
-import api from '../../../services/api';
-import { Plano } from '../../../types/dash-board';
-import { MdAdd, MdEventNote, MdClose } from 'react-icons/md';
-import Loader from '../../Loader';
-import { UserData } from '../../../store/user/types';
-import { useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { set_plans_data } from '../../../store/dashboard/actions';
+import React, { ChangeEvent, Dispatch, FormEvent, HTMLAttributes, SetStateAction, useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { ApplicationStore } from '../../../store'
+import api from '../../../services/api'
+import { Plano } from '../../../types/dash-board'
+import { MdAdd, MdEventNote, MdClose } from 'react-icons/md'
+import Loader from '../../Loader'
+import { UserData } from '../../../store/user/types'
+import { useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { set_plans_data } from '../../../store/dashboard/actions'
 
 
 const Plans: React.FC = () => {
-  const store = useSelector( (state: ApplicationStore) => state.user );
-  const [ plans, setPlans ] = useState<Plano[]>();
-  const [ loaded, setLoaded ] = useState(true);
+  const store = useSelector( (state: ApplicationStore) => state.user )
+  const [ plans, setPlans ] = useState<Plano[]>()
+  const [ loaded, setLoaded ] = useState(true)
 
-  const [ isAddingCard, setIsAddingCard ] = useState(false);
+  const [ isAddingCard, setIsAddingCard ] = useState(false)
 
-  const dashboard = useSelector((store: ApplicationStore) => store.dashboard);
+  const dashboard = useSelector((store: ApplicationStore) => store.dashboard)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const closeModal = useCallback(() => {
-    setIsAddingCard(false);
-  }, []);
+    setIsAddingCard(false)
+  }, [])
 
   useEffect(() => {
     if (plans)
       dispatch(set_plans_data(plans))
-  }, [ dispatch, plans ]);
+  }, [ dispatch, plans ])
 
   useEffect( () => {
     if ( dashboard.plans_data ) {
-      setPlans(dashboard.plans_data);
+      setPlans(dashboard.plans_data)
 
-      return;
+      return
     }
 
-    setLoaded(false);
+    setLoaded(false)
 
     const getAccountPlans = async () => {
       const result = await api.get(`/lancamentos/planos-conta?login=${store?.login}`, {
         headers: {
           Authorization: store?.token,
         }
-      });
-      setPlans(result.data);
-      setLoaded(true);
+      })
+      setPlans(result.data)
+      setLoaded(true)
     }
 
-    getAccountPlans();
-  }, [ store, dashboard ]);
+    getAccountPlans()
+  }, [ store, dashboard ])
 
   if (loaded) return (
     <>
@@ -66,7 +66,7 @@ const Plans: React.FC = () => {
             <p className="type-movement">
               Movimentação tipo: <span>{plan.tipoMovimento}</span>
             </p>
-          </div>);
+          </div>)
         })}
 
         {plans && (
@@ -80,7 +80,7 @@ const Plans: React.FC = () => {
 
       </div>
     </>
-  );
+  )
 
   else return <Loader style={{ border: 'solid #f0f0f0 4px' }} />
 }
@@ -96,25 +96,25 @@ interface AddPlansModalProps extends HTMLAttributes<HTMLDivElement> {
 
 const AddPlansModal: React.FC<AddPlansModalProps> = ({ closeModal, setPlans, ...props }) => {
 
-    const history = useHistory();
+    const history = useHistory()
 
-    const { token, login } = useSelector((store: ApplicationStore) => store.user as UserData);
+    const { token, login } = useSelector((store: ApplicationStore) => store.user as UserData)
 
-    const [ type, setType ] = useState('');
-    const [ description, setDescription ] = useState('');
+    const [ type, setType ] = useState('')
+    const [ description, setDescription ] = useState('')
 
     const handleChangeDescription = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-      if ( e.target.value.length <= 20 ) setDescription(e.target.value);
-    }, []);
+      if ( e.target.value.length <= 20 ) setDescription(e.target.value)
+    }, [])
 
     const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+      e.preventDefault()
 
-      const filteredType = type.trim();
-      const filteredDescription = description.trim();
+      const filteredType = type.trim()
+      const filteredDescription = description.trim()
 
       // Validação
-      if ( filteredType.length === 0 || filteredDescription.length === 0 ) return toast.error('Preencha todos os campos!');;
+      if ( filteredType.length === 0 || filteredDescription.length === 0 ) return toast.error('Preencha todos os campos!')
 
       const data = {
         descricao: filteredDescription,
@@ -130,18 +130,18 @@ const AddPlansModal: React.FC<AddPlansModalProps> = ({ closeModal, setPlans, ...
         if ( response.status === 200 ) {
           setPlans((previewPlans) =>{
             if ( previewPlans ) {
-              toast.success('Plano adicionado com sucesso!');
-              return [ ...previewPlans, data ];
+              toast.success('Plano adicionado com sucesso!')
+              return [ ...previewPlans, data ]
             }
-          });
-          closeModal();
+          })
+          closeModal()
         } else {
-          toast.error('Ocorreu algum erro!');
-          history.push('/error');
+          toast.error('Ocorreu algum erro!')
+          history.push('/error')
         }
 
-      });
-    }, [token, type, login, description, setPlans, closeModal, history]);
+      })
+    }, [token, type, login, description, setPlans, closeModal, history])
 
     return (
         <div
@@ -185,7 +185,7 @@ const AddPlansModal: React.FC<AddPlansModalProps> = ({ closeModal, setPlans, ...
             </form>
           </div>
         </div>
-    );
+    )
 }
 
-export default Plans;
+export default Plans

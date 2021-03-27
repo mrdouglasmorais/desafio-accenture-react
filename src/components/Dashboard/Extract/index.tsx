@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
-import currentIcon from '../../../assets/svgs/current-icon.svg';
-import creditCardsIcon from '../../../assets/svgs/credit-cards-icon.svg';
-import { Conta } from '../../../types/dash-board';
+import React, { useMemo } from 'react'
+import currentIcon from '../../../assets/svgs/current-icon.svg'
+import creditCardsIcon from '../../../assets/svgs/credit-cards-icon.svg'
+import { Conta } from '../../../types/dash-board'
 
 interface ExtractData {
     contaBanco?: Conta,
@@ -18,27 +18,27 @@ enum PlanosConta {
 const Extract: React.FC<ExtractData> = (props) => {
     const allLaunchs = useMemo(() => {
         if (props.contaBanco?.lancamentos && props.contaCredito?.lancamentos) {
-            const initLaunchs = [...props.contaBanco.lancamentos, ...props.contaCredito.lancamentos];
+            const initLaunchs = [...props.contaBanco.lancamentos, ...props.contaCredito.lancamentos]
 
             const orderedLauchs = initLaunchs.slice().sort((a, b) => {
-                return Number(new Date(a.data)) - Number(new Date(b.data));
-            }).reverse();
+                return Number(new Date(a.data)) - Number(new Date(b.data))
+            }).reverse()
 
-            return orderedLauchs;
+            return orderedLauchs
         } else {
-            return [];
+            return []
         }
-    }, [props.contaBanco?.lancamentos, props.contaCredito?.lancamentos]);
+    }, [props.contaBanco?.lancamentos, props.contaCredito?.lancamentos])
 
     function typePlans(typePlan: string) {
         if (typePlan === 'R') {
-            return PlanosConta.R;
+            return PlanosConta.R
         } else if (typePlan === 'D') {
-            return PlanosConta.D;
+            return PlanosConta.D
         } else if (typePlan === 'TC') {
-            return PlanosConta.TC;
+            return PlanosConta.TC
         } else {
-            return PlanosConta.TU;
+            return PlanosConta.TU
         }
     }
 
@@ -68,4 +68,4 @@ const Extract: React.FC<ExtractData> = (props) => {
     )
 }
 
-export default Extract;
+export default Extract

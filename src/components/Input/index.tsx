@@ -1,30 +1,30 @@
-import React, { InputHTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
-import { useField } from '@unform/core';
-import { FiAlertCircle } from 'react-icons/fi';
-import Tooltip from '../Tooltip';
+import React, { InputHTMLAttributes, useCallback, useEffect, useRef, useState } from 'react'
+import { useField } from '@unform/core'
+import { FiAlertCircle } from 'react-icons/fi'
+import Tooltip from '../Tooltip'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
 }
 
 const Input: React.FC<InputProps> = ({ name, ...props }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, defaultValue, error, registerField } = useField(name);
-  const [isFocused, setIsFocused] = useState(false);
-  const [isFilled, setIsFilled] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null)
+  const { fieldName, defaultValue, error, registerField } = useField(name)
+  const [isFocused, setIsFocused] = useState(false)
+  const [isFilled, setIsFilled] = useState(false)
 
   const handleInputFocus = useCallback(() => {
-    setIsFocused(true);
+    setIsFocused(true)
   }, [])
 
   const handleInputBlur = useCallback(() => {
-    setIsFocused(false);
+    setIsFocused(false)
     if (inputRef.current?.value) {
-      setIsFilled(true);
+      setIsFilled(true)
     } else {
-      setIsFilled(false);
+      setIsFilled(false)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     registerField({
@@ -32,7 +32,7 @@ const Input: React.FC<InputProps> = ({ name, ...props }) => {
       ref: inputRef.current,
       path: 'value',
     })
-  }, [fieldName, registerField]);
+  }, [fieldName, registerField])
 
   return (
     <>
@@ -49,7 +49,7 @@ const Input: React.FC<InputProps> = ({ name, ...props }) => {
           </Tooltip>
         )}
     </>
-  );
+  )
 }
 
-export default Input;
+export default Input

@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react';
-import React from 'react';
-import Header from '../../components/Header';
+import { render } from '@testing-library/react'
+import React from 'react'
+import Header from '../../components/Header'
 
 jest.mock('react-router-dom', () => {
     return {
@@ -12,6 +12,6 @@ jest.mock('react-router-dom', () => {
 describe('Header app', () => {
     it('Find components', () => {
         const { debug } = render(<Header />)
-        debug();
+        debug()
     })
 })

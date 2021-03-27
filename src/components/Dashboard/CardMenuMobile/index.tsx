@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import pixIcon from '../../../assets/svgs/pix-icon.svg';
+import pixIcon from '../../../assets/svgs/pix-icon.svg'
 
 interface ComponentProp {
     title: string;
@@ -10,7 +10,7 @@ interface ComponentProp {
 const CardMenuMobile: React.FC<ComponentProp> = ( props ) => {
 
     const changeComponent = () => {
-        props.func(props.title);
+        props.func(props.title)
     }
 
     return (
@@ -23,4 +23,4 @@ const CardMenuMobile: React.FC<ComponentProp> = ( props ) => {
     )
 }
 
-export default CardMenuMobile;
+export default CardMenuMobile

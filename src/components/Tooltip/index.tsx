@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 interface TooltipProps {
   message: string;
@@ -11,7 +11,7 @@ const Tooltip: React.FC<TooltipProps> = ({ message, className, children }) => {
       {children}
       <span>{message}</span>
     </div>
-  );
+  )
 }
 
-export default Tooltip;
+export default Tooltip

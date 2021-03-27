@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, Redirect } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { FaArrowRight } from 'react-icons/fa'
 import { Form } from '@unform/web'
@@ -16,6 +16,8 @@ import Input from '../../components/Input'
 import { FormHandles } from '@unform/core'
 import getValidationErrors from '../../utils/getValidationErrors'
 import { AnyObject } from '../../types/utils'
+
+import getIsAuth from '../../services/getIsAuth'
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('')
@@ -52,7 +54,9 @@ const Login: React.FC = () => {
       localStorage.setItem('@user_name', response.usuario.nome)
       updateReduxState()
       toast.success('Seja bem-vindo(a)')
-      //redirecionar para dashboard;
+      const isAuth = getIsAuth()
+      if (isAuth) history.push('/dashboard')
+      else history.push('/login')
     }
     catch (err) {
       const errors = getValidationErrors(err)

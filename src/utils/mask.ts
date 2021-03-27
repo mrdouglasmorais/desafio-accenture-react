@@ -1,4 +1,4 @@
-export const maskCPF = ( cpfValue: string ) => {
+export const maskCPF = ( cpfValue: string ): string => {
     const maskParts = []
 
     const numberOfParts = Math.ceil(cpfValue.length / 3)
@@ -12,6 +12,6 @@ export const maskCPF = ( cpfValue: string ) => {
     return mask
 }
 
-export const removeMaskCPF = ( mask: string ) => {
+export const removeMaskCPF = ( mask: string ): string => {
     return mask.split('').filter( char => !isNaN(Number(char)) ).join('')
 }

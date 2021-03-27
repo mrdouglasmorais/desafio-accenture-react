@@ -27,9 +27,10 @@ const Routes: React.FC = () => {
     return (
         <BrowserRouter>
             <Switch>
-                {/* Rotas */}
                 <Route path="/" exact component={Landing} />
                 <UnauthRoute path="/login" component={Login} />
+                <UnauthRoute path="/recover" component={RecoverPassword} />
+                <UnauthRoute path="/error" component={Error} />
                 <PrivateRoute path="/dashboard" component={Dashboard} />
             </Switch>
         </BrowserRouter>

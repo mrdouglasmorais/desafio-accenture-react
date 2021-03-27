@@ -25,7 +25,7 @@ const RecoverPassword: React.FC = () => {
     const formUsernameRef = useRef<FormHandles>(null)
     const formPasswordRef = useRef<FormHandles>(null)
 
-    const handleSubmitUsername = useCallback(async (dataProps: object) => {
+    const handleSubmitUsername = useCallback(async (dataProps: Record<string, unknown>) => {
         setLoading(true)
         try {
             formUsernameRef.current?.setErrors({})
@@ -63,7 +63,7 @@ const RecoverPassword: React.FC = () => {
         }
     }, [username, history])
 
-    const handleSubmitNewPassword = useCallback(async (dataProps: object) => {
+    const handleSubmitNewPassword = useCallback(async (dataProps: Record<string, unknown>) => {
         setLoading(true)
 
         try {

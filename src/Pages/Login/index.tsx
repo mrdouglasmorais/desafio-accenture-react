@@ -54,16 +54,19 @@ const Login: React.FC = () => {
       localStorage.setItem('@user_name', response.usuario.nome)
       updateReduxState()
       toast.success('Seja bem-vindo(a)')
-      const isAuth = getIsAuth()
-      if (isAuth) history.push('/dashboard')
+      
+      if (getIsAuth()) history.push('/dashboard')
       else history.push('/login')
+
     }
     catch (err) {
       const errors = getValidationErrors(err)
+      console.log(errors)
+      console.log(err)
       formRef.current?.setErrors(errors)
       if (Object.keys(err).includes('isAxiosError')) {
         toast.error('Ocorreu algum erro!')
-        return //redirecionar para página de erro;
+        return history.push('/error')
       }
       setLoading(false)
       toast.error('Usuario ou senha incorretos!')

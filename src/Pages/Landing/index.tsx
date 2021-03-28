@@ -10,6 +10,8 @@ import getValidationErrors from '../../utils/getValidationErrors'
 import { maskCPF, removeMaskCPF } from '../../utils/mask'
 
 
+import { Section, BannerMargin, CardAcess, CardCadLogin, Banner, LogoImg, StyleMargTop, StyleMargBotton } from './styles'
+import LogoImgnow from '../../assets/logonow.png'
 
 import Header from '../../components/Header'
 import Input from '../../components/Input'
@@ -32,31 +34,28 @@ const Landing: React.FC = () => {
   const history = useHistory()
   const formRef = useRef<FormHandles>(null)
 
-  const [ isFilled, setIsFilled ] = useState(false)
-
+  const [isFilled, setIsFilled] = useState(false)
   // Atualiza a mascara do CPF
   useEffect(() => {
     // devemos setar o estado
   }, [cpfMask])
-
   // Atualiza se todos os campos estão preenchidos para deixar o botão de confirmar verde
   useEffect(() => {
-    if ( name.length > 3 && 
-      password && 
-      confirmPassword && 
-      cpf.length === 11 && 
-      username ) setIsFilled(true)
+    if (name.length > 3 &&
+      password &&
+      confirmPassword &&
+      cpf.length === 11 &&
+      username) setIsFilled(true)
     else setIsFilled(false)
   }, [
-    
+
     // devemos informar os elementos utilizados
   ])
-
   // Lidar com o registro
   const handleSubmit = useCallback(async (data: AnyObject) => {
     const filteredData: AnyObject = {}
 
-    Object.keys(data).forEach( key => {
+    Object.keys(data).forEach(key => {
       filteredData[key] = data[key].trim()
     })
 
@@ -112,7 +111,6 @@ const Landing: React.FC = () => {
       setLoading(false)
     }
   }, [cpf, username, name, password, confirmPassword, history])
-
   // Check if user is authenticated
   const handleRedirectToLogin = useCallback(() => {
     const isAuth = getIsAuth()
@@ -120,7 +118,6 @@ const Landing: React.FC = () => {
     if (isAuth) history.push('/dashboard')
     else history.push('/login')
   }, [history])
-
   const handleSetCpfMask = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setCpfMask(
       maskCPF(
@@ -129,50 +126,60 @@ const Landing: React.FC = () => {
     )
   }, [])
 
+
   return (
     <>
-      <Header />
-
+    
+      <CardAcess>
+        <button onClick={handleRedirectToLogin}>Acessar minha conta!</button>
+      </CardAcess>
       <div>
-        <div>
-          <div>
-            <div>
-              <div>
-                <p>Gama Bank é um projeto de nossos alunos.
-                <span> Já tem conta?</span></p>
-              </div>
-              <button onClick={handleRedirectToLogin}>Acessar <FaArrowRight /></button>
-            </div>
+      <StyleMargTop />
+        <BannerMargin>
 
-            <div>
+          <Banner>
+            <LogoImg>
+              <img src={LogoImgnow} alt="" />
+              <div>
+                <p>Uma conta digital do seu tempo!</p>
+              </div>
+            </LogoImg>
+
+            <CardCadLogin>
               <Form ref={formRef} onSubmit={handleSubmit}>
-                <h1> Peça sua conta e cartão de crédito do Gama Bank</h1>
+                <h2> Solicite sua conta e cartão de credito do NoWBank agora!</h2>
                 <Input name="cpf" maxLength={14} value={cpfMask} onChange={handleSetCpfMask} placeholder="Digite seu CPF" />
                 <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Escolha um nome de usuário" />
                 <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
                 <Input name="password" value={password} type="password" onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" />
                 <Input name="confirmPassword" value={confirmPassword} type="password" onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua senha" />
-                {loading ? <Loader /> : <button type="submit">Continuar<FaArrowRight className="ArrowRight" /></button>}
+                {loading ? <Loader /> : <button type="submit">CONTINUAR<FaArrowRight className="ArrowRight" /></button>}
               </Form>
-            </div>
-          </div>
-        </div>
+            </CardCadLogin>
+
+          </Banner>
+        </BannerMargin>
+        <StyleMargBotton/>
       </div>
 
-      <section>
+      <Section>
+
         <div>
           <div>
             <div>
-              <span>Conta digital do Gama Academy</span>
-              <p>Rende mais que a poupança, sem taxa de manutenção nem tarifas escondidas.</p>
+              <span>Com nosso Conta digital</span>
+              <p>Seu investimento rende mais que a poupança!</p>
+              <p>sem taxa de manutenção nem tarifas escondidas.</p>
+              <button>ok</button>
             </div>
             <div>
               <span>Cartão de Crédito</span>
-              <p>Rende mais que a poupança, sem taxa de manutenção nem tarifas escondidas.</p>
+              <p>Rende mais que a poupança, sem taxa de <br />
+              manutenção nem tarifas escondidas.</p>
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       <section>
         <div>
@@ -221,3 +228,5 @@ const Landing: React.FC = () => {
 }
 
 export default Landing
+
+

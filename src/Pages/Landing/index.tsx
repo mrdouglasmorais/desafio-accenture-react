@@ -19,10 +19,6 @@ import { AnyObject } from '../../types/utils'
 import { UserResponse } from '../../types/user'
 import updateReduxState from '../../services/updateReduxState'
 
-const fakeDanger = {
-  background: 'red'
-}
-
 const fakePositive = {
   background: 'green'
 }
@@ -36,6 +32,7 @@ const Landing: React.FC = () => {
   const [cpf, setCpf] = useState('')
   const [cpfMask, setCpfMask] = useState('')
   const [loading, setLoading] = useState(false)
+  const [passwordMatch, setPasswordMatch] = useState(true)
   const history = useHistory()
   const formRef = useRef<FormHandles>(null)
 
@@ -51,7 +48,8 @@ const Landing: React.FC = () => {
       password &&
       confirmPassword &&
       cpf.length === 11 &&
-      username ) setIsFilled(true)
+      username &&
+      passwordMatch ) setIsFilled(true)
     else setIsFilled(false)
   }, [
     name,
@@ -139,6 +137,16 @@ const Landing: React.FC = () => {
     )
   }, [])
 
+  const handleSetConfirmPassword = (e: ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(e.target.value)
+    if (formRef.current?.getFieldRef('password').value?.length
+      && formRef.current?.getFieldRef('confirmPassword').value?.length) {
+      if (formRef.current?.getFieldRef('password').value !== formRef.current?.getFieldRef('confirmPassword').value) {
+        setPasswordMatch(false)
+      } else setPasswordMatch(true)
+    } else setPasswordMatch(true)
+  }
+
   return (
     <>
       <Header />
@@ -161,12 +169,15 @@ const Landing: React.FC = () => {
                 <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Escolha um nome de usuário" />
                 <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
                 <Input name="password" value={password} type="password" onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" />
-                <Input name="confirmPassword" value={confirmPassword} type="password" onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua senha" />
+                <Input name="confirmPassword" value={confirmPassword} type="password" onChange={handleSetConfirmPassword} placeholder="Confirme sua senha" />
+                {
+                  !passwordMatch ? <span>Senha diferente</span> : null
+                }
 
                 {
                   loading
                   ? <Loader />
-                  : <button style={ isFilled ? fakePositive : fakeDanger} type="submit">Continuar<FaArrowRight
+                  : <button style={ isFilled ? fakePositive : undefined } disabled={!isFilled} type="submit">Continuar<FaArrowRight
                   className={'ArrowRight negative'} /></button>
                 }
                 {/* <button type="submit">Continuar<FaArrowRight className="ArrowRight" /></button> */}

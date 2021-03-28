@@ -61,8 +61,6 @@ const Login: React.FC = () => {
     }
     catch (err) {
       const errors = getValidationErrors(err)
-      console.log(errors)
-      console.log(err)
       formRef.current?.setErrors(errors)
       if (Object.keys(err).includes('isAxiosError')) {
         toast.error('Ocorreu algum erro!')

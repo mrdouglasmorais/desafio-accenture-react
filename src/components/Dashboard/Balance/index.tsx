@@ -4,8 +4,8 @@ import creditIcon from '../../../assets/svgs/credit-card-icon.svg'
 import { Conta } from '../../../types/dash-board'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { ApplicationStore } from '../../../store'
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { hide_dashboard_data } from '../../../store/dashboard/actions'
 
 interface Total {
   banco: number,
@@ -27,10 +27,15 @@ const Balance: React.FC<AccountProps> = (props) => {
   const [user, setUser] = useState('')
   const [hide, setHide] = useState(false)
   const store = useSelector((state: ApplicationStore) => state.user)
+  const storeDataDisplay = useSelector((state: ApplicationStore) => state.dashboard)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (store)
-      setUser(store.name)
+    if (store) setUser(store.name)
+    if (storeDataDisplay?.hide_dashboard_data) {
+      console.log(storeDataDisplay)
+      setHide(storeDataDisplay.hide_dashboard_data)
+    }
   }, [store])
 
   useEffect(() => {
@@ -57,7 +62,14 @@ const Balance: React.FC<AccountProps> = (props) => {
   }, [contaBanco?.lancamentos, contaCredito?.lancamentos, props.contaBanco, props.contaCredito])
 
   const hideOrShowInformations = () => {
-    setHide(!hide)
+    if (hide) {
+      setHide(false)
+      dispatch(hide_dashboard_data(true))
+    } else {
+      setHide(true)
+      dispatch(hide_dashboard_data(false))
+    }
+    console.log(storeDataDisplay)
   }
 
   return (

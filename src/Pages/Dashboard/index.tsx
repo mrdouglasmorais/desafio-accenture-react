@@ -21,7 +21,7 @@ const Dashboard: React.FC = () => {
 
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen)
 
-  const [modalIsOpen,setIsOpen] = useState(false)
+  const [ modalIsOpen, setIsOpen ] = useState(false)
   const [ isExiting, setIsExiting ] = useState(false)
 
   //Setting data accounts;
@@ -41,7 +41,7 @@ const Dashboard: React.FC = () => {
   }, [ dispatch, history ])
 
   function setModal() {
-    if(modalIsOpen === true)
+    if (modalIsOpen === true)
       setIsOpen(false)
     else
       setIsOpen(true)

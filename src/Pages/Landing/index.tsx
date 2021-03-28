@@ -113,6 +113,9 @@ const Landing: React.FC = () => {
         history.push('/error')
       }
     } catch (err) {
+      if (err.response?.data?.error?.includes('Já existe um usuario cadastrado com o login')) {
+        toast.error(`Nome de usuário "${username}" indisponível!`)
+      }
       const errors = getValidationErrors(err)
       formRef.current?.setErrors(errors)
       toast.error('O formulário está incorreto!')

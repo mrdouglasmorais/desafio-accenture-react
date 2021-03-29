@@ -9,7 +9,23 @@ import getIsAuth from '../../services/getIsAuth'
 import getValidationErrors from '../../utils/getValidationErrors'
 import { maskCPF, removeMaskCPF } from '../../utils/mask'
 
-import Header from '../../components/Header'
+// import Header from '../../components/Header'
+import ImgStud from "../../assets/student.png"
+import {
+  Section,
+  BannerMargin,
+  CardAcess,
+  CardCadLogin,
+  Banner,
+  LogoImg,
+  StyleMargTop,
+  StyleMargBotton,
+  CardStud,
+  CardSection
+  } from './styles'
+import LogoImgnow from '../../assets/logonow.png'
+
+
 import Input from '../../components/Input'
 import Loader from '../../components/Loader'
 
@@ -36,8 +52,7 @@ const Landing: React.FC = () => {
   const history = useHistory()
   const formRef = useRef<FormHandles>(null)
 
-  const [ isFilled, setIsFilled ] = useState(false)
-
+  const [isFilled, setIsFilled] = useState(false)
   // Atualiza a mascara do CPF
   useEffect(() => {
     setCpf(removeMaskCPF(cpfMask))
@@ -59,12 +74,11 @@ const Landing: React.FC = () => {
     cpf,
     username
   ])
-
   // Lidar com o registro
   const handleSubmit = useCallback(async (data: AnyObject) => {
     const filteredData: AnyObject = {}
 
-    Object.keys(data).forEach( key => {
+    Object.keys(data).forEach(key => {
       filteredData[key] = data[key].trim()
     })
 
@@ -123,7 +137,6 @@ const Landing: React.FC = () => {
       setLoading(false)
     }
   }, [cpf, username, name, password, confirmPassword, history])
-
   // Check if user is authenticated
   const handleRedirectToLogin = useCallback(() => {
     const isAuth = getIsAuth()
@@ -131,7 +144,6 @@ const Landing: React.FC = () => {
     if (isAuth) history.push('/dashboard')
     else history.push('/login')
   }, [history])
-
   const handleSetCpfMask = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setCpfMask(
       maskCPF(
@@ -152,22 +164,26 @@ const Landing: React.FC = () => {
 
   return (
     <>
-      <Header />
 
+      <CardAcess>
+        <button onClick={handleRedirectToLogin}>Acessar minha conta!</button>
+      </CardAcess>
       <div>
-        <div>
-          <div>
-            <div>
-              <div>
-                <p>Gama Bank é um projeto de nossos alunos.
-                <span> Já tem conta?</span></p>
-              </div>
-              <button onClick={handleRedirectToLogin}>Acessar <FaArrowRight /></button>
-            </div>
 
-            <div>
+        <StyleMargTop />
+        <BannerMargin>
+
+          <Banner>
+            <LogoImg>
+              <img src={LogoImgnow} alt="" />
+              <div>
+                <p>Uma conta digital do seu tempo!</p>
+              </div>
+            </LogoImg>
+
+            <CardCadLogin>
               <Form ref={formRef} onSubmit={handleSubmit}>
-                <h1> Peça sua conta e cartão de crédito do Gama Bank</h1>
+                <h2> Solicite sua conta e cartão de crédito do NoWBank agora!</h2>
                 <Input name="cpf" maxLength={14} value={cpfMask} onChange={handleSetCpfMask} placeholder="Digite seu CPF" />
                 <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Escolha um nome de usuário" />
                 <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
@@ -176,36 +192,31 @@ const Landing: React.FC = () => {
                 {
                   !passwordMatch ? <span>Senha diferente</span> : null
                 }
-
-                {
-                  loading
-                  ? <Loader />
-                  : <button style={ isFilled ? fakePositive : undefined } disabled={!isFilled} type="submit">Continuar<FaArrowRight
-                  className={'ArrowRight negative'} /></button>
-                }
-                {/* <button type="submit">Continuar<FaArrowRight className="ArrowRight" /></button> */}
+                {loading ? <Loader /> : <button type="submit">CONTINUAR<FaArrowRight className="ArrowRight" /></button>}
               </Form>
-            </div>
-          </div>
-        </div>
+            </CardCadLogin>
+
+          </Banner>
+        </BannerMargin>
+        <StyleMargBotton />
       </div>
 
-      <section>
-        <div>
-          <div>
-            <div>
-              <span>Conta digital do Gama Academy</span>
-              <p>Rende mais que a poupança, sem taxa de manutenção nem tarifas escondidas.</p>
-            </div>
-            <div>
-              <span>Cartão de Crédito</span>
-              <p>Rende mais que a poupança, sem taxa de manutenção nem tarifas escondidas.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Section>
 
-      <section>
+        <div>
+
+          <p>Sem taxa de manutenção nem tarifas escondidas.
+          <br />Com nossa Conta digital, seu investimento rende mais que a poupança!</p>
+          <button>ok</button>
+
+        </div>
+      </Section>
+
+      <CardStud>
+        <img src={ImgStud} alt=""/>
+      </CardStud>
+
+      <CardSection>
         <div>
           <div>
             <div>
@@ -217,8 +228,7 @@ const Landing: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
-
+      </CardSection>
 
       <section>
         <div>

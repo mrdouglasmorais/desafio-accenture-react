@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import Routes from './routes'
 
+import GlobalStyle from './styles/GlobalStyles'
+
 import { checkIsAuth } from './services/getIsAuth'
 import updateReduxState from './services/updateReduxState'
 
@@ -16,6 +18,7 @@ const App: React.FC = () => {
 
   return (
     <>
+    <GlobalStyle />
       <Routes />
       <ToastContainer />
     </>

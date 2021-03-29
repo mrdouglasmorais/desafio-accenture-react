@@ -4,13 +4,11 @@ export default createGlobalStyle`
     *{
         padding: 0;
         margin: 0;
-       
-    outline: none;
-    box-sizing: border-box;
-    font-family: Roboto, sans-serif;
+        outline: none;
+        box-sizing: border-box;
+        font-family: Roboto, sans-serif;
     }
     body{
         background: none;
-      
     }
 `

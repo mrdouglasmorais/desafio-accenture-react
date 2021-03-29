@@ -78,17 +78,21 @@ const Login: React.FC = () => {
     <>
       <Header />
         <Form ref={formRef} onSubmit={handleSubmit}>
-          Faça o login
+          Acesse a sua conta
 
           <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Digite seu usuário" autoFocus />
           <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
 
-          {loading ? <Loader /> : <Button
-            type="submit"
-            text="Continuar"
-            Icon={FaArrowRight}
-            className="form-button"
-          />
+          {
+            loading
+            ? <Loader />
+            : <Button
+                type="submit"
+                text="Continuar"
+                Icon={FaArrowRight}
+                className="form-button"
+                onKeyDown={handleSubmit}
+              />
           }
 
           <Link to="/recover">Esqueci minha senha</Link>

@@ -27,7 +27,6 @@ const reducer: Reducer<DashboardData> = (state = INITIAL_STATE, action) => {
             ? localStorage.setItem('@hide_dashboard_display', 'yes')
             : localStorage.setItem('@hide_dashboard_display', 'no')
 
-            console.log('dashboard store:', state)
             return { ...state, hide_dashboard_data: dataToChange}
         }
         default:

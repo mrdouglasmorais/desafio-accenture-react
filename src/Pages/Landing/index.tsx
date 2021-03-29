@@ -192,7 +192,7 @@ const Landing: React.FC = () => {
                 {
                   !passwordMatch ? <span>Senha diferente</span> : null
                 }
-                {loading ? <Loader /> : <button type="submit">CONTINUAR<FaArrowRight className="ArrowRight" /></button>}
+                {loading ? <Loader /> : <button type="submit" disabled={!isFilled ? true : false}>CONTINUAR<FaArrowRight className="ArrowRight" /></button>}
               </Form>
             </CardCadLogin>
 

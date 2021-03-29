@@ -33,7 +33,6 @@ const Balance: React.FC<AccountProps> = (props) => {
   useEffect(() => {
     if (store) setUser(store.name)
     if (storeDataDisplay?.hide_dashboard_data) {
-      console.log(storeDataDisplay)
       setHide(storeDataDisplay.hide_dashboard_data)
     }
   }, [store])
@@ -64,12 +63,11 @@ const Balance: React.FC<AccountProps> = (props) => {
   const hideOrShowInformations = () => {
     if (hide) {
       setHide(false)
-      dispatch(hide_dashboard_data(true))
+      dispatch(hide_dashboard_data(false))
     } else {
       setHide(true)
-      dispatch(hide_dashboard_data(false))
+      dispatch(hide_dashboard_data(true))
     }
-    console.log(storeDataDisplay)
   }
 
   return (

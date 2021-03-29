@@ -1,11 +1,9 @@
 import styled from 'styled-components'
 import img from "../../assets/feliz.png"
 
-
-
 export const BannerMargin = styled.div`
     margin: 0px auto;
-    width: 100%;
+    width: 100vw;
     height: 80vh;
     padding: 0px 16px;
     background: #7CC5EA;
@@ -19,8 +17,8 @@ export const LogoImg= styled.div`
 
     img{
      width:100%;
-        
-       
+
+
     }
 
 `
@@ -36,6 +34,7 @@ export const CardAcess = styled.div`
     display:flex;
     justify-content:flex-end;
     button{
+        cursor: pointer;
         height: 50px;
         color:#7CC5EA;
         font-family: 'Concert One', cursive;
@@ -49,12 +48,12 @@ export const CardAcess = styled.div`
         transition:0.5s;
             &:hover{
             color: white;
-            background:#95d4db ;
+            background:#7ceadb;
             }
         }
 `
 export const CardCadLogin = styled.div`
-margin-top:20px;
+    margin-top:20px;
     width: 350px;
     max-width: 100%;
     min-height: 450px;
@@ -66,6 +65,7 @@ margin-top:20px;
         font-family: 'Concert One', cursive;
     }
     button{
+        cursor: pointer;
         background:#7CC5EA;
         border-radius: 20px;
         height: 40px;
@@ -82,7 +82,10 @@ margin-top:20px;
         transition:0.5s;
             &:hover{
             color: white;
-            background:#95d4db ;
+            background:#7ceadb;
+            }
+            &:disabled {
+                background: #c1c1c1;
             }
     }
     input{
@@ -111,7 +114,7 @@ export const Section = styled.div`
     background-position:right bottom;
     div{
         width: 50%;
-    }    
+    }
     p{
         text-align: center;
         font-size:2rem;
@@ -135,7 +138,7 @@ export const Section = styled.div`
             color: white;
             background:#95d4db ;
             }
-}
+    }
 `
 
 export const StyleMargTop = styled.div`
@@ -152,22 +155,18 @@ export const StyleMargBotton = styled.div`
 
 `
 export const CardStud = styled.div`
+    width: 100%;
+    height: 139vh;
 
-
-width: 100%;
-  height: 139vh;
-  img{ width: 100%; height: auto;
-}
-
+    img{
+        width: 100%;
+        height: auto;
+    }
 
 `
 export const CardSection = styled.section`
-width:100%;
-height:200px;
-background:red;
-
-  
-
-
+    width:100%;
+    height:200px;
+    background:red;
 
 `

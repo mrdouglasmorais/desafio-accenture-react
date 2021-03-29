@@ -1,29 +1,10 @@
 
- 
-    width: auto;
-    height: 42px;
-    background: #7CC5EA;
-    border-radius: 20px;
-    border: none;
-
-    font-family: 'Concert One', cursive;
-    font-size: 2rem;
-    font-weight: 400;
-    color: rgb(140, 82, 229);
-    padding: 20px;
-    margin-top: 25px;
-
-
-  
-    width: auto;
-    height: 42px;
-    background: #7CC5EA;
-    border-radius: 20px;
-    border: none;
-
-    font-family: 'Concert One', cursive;
-    font-size: 2rem;
-    font-weight: 400;
-    color: rgb(140, 82, 229);
-    padding: 20px;
-    margin-top: 25px;
+ export const CardCredStud = styled.div`
+    background-image: url(${ImgStud});
+    height: 600px;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position:right;
+`

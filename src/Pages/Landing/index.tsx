@@ -9,11 +9,22 @@ import getIsAuth from '../../services/getIsAuth'
 import getValidationErrors from '../../utils/getValidationErrors'
 import { maskCPF, removeMaskCPF } from '../../utils/mask'
 
-
-import { Section, BannerMargin, CardAcess, CardCadLogin, Banner, LogoImg, StyleMargTop, StyleMargBotton } from './styles'
+import ImgStud from "../../assets/student.png"
+import { 
+  Section,
+  BannerMargin,
+  CardAcess,
+  CardCadLogin,
+  Banner,
+  LogoImg,
+  StyleMargTop,
+  StyleMargBotton,
+  CardStud,
+  CardSection
+  } from './styles'
 import LogoImgnow from '../../assets/logonow.png'
 
-import Header from '../../components/Header'
+
 import Input from '../../components/Input'
 import Loader from '../../components/Loader'
 
@@ -129,12 +140,13 @@ const Landing: React.FC = () => {
 
   return (
     <>
-    
+ 
+
       <CardAcess>
         <button onClick={handleRedirectToLogin}>Acessar minha conta!</button>
       </CardAcess>
       <div>
-      <StyleMargTop />
+        <StyleMargTop />
         <BannerMargin>
 
           <Banner>
@@ -147,7 +159,7 @@ const Landing: React.FC = () => {
 
             <CardCadLogin>
               <Form ref={formRef} onSubmit={handleSubmit}>
-                <h2> Solicite sua conta e cartão de credito do NoWBank agora!</h2>
+                <h2> Solicite sua conta e cartão de crédito do NoWBank agora!</h2>
                 <Input name="cpf" maxLength={14} value={cpfMask} onChange={handleSetCpfMask} placeholder="Digite seu CPF" />
                 <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Escolha um nome de usuário" />
                 <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
@@ -159,29 +171,26 @@ const Landing: React.FC = () => {
 
           </Banner>
         </BannerMargin>
-        <StyleMargBotton/>
+        <StyleMargBotton />
       </div>
 
       <Section>
 
         <div>
-          <div>
-            <div>
-              <span>Com nosso Conta digital</span>
-              <p>Seu investimento rende mais que a poupança!</p>
-              <p>sem taxa de manutenção nem tarifas escondidas.</p>
-              <button>ok</button>
-            </div>
-            <div>
-              <span>Cartão de Crédito</span>
-              <p>Rende mais que a poupança, sem taxa de <br />
-              manutenção nem tarifas escondidas.</p>
-            </div>
-          </div>
+
+
+          <p>Sem taxa de manutenção nem tarifas escondidas.
+          <br />Com nossa Conta digital, seu investimento rende mais que a poupança!</p>
+          <button>ok</button>
+
+
+
         </div>
       </Section>
-
-      <section>
+<CardStud>
+ <img src={ImgStud} alt=""/>
+</CardStud>
+      <CardSection>
         <div>
           <div>
             <div>
@@ -193,7 +202,7 @@ const Landing: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
+      </CardSection>
 
 
       <section>

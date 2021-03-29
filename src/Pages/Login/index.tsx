@@ -18,6 +18,7 @@ import getValidationErrors from '../../utils/getValidationErrors'
 import { AnyObject } from '../../types/utils'
 
 import getIsAuth from '../../services/getIsAuth'
+import { CardLoginForm, LoginContainer } from './styles'
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('')
@@ -77,27 +78,31 @@ const Login: React.FC = () => {
   return (
     <>
       <Header />
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          Acesse a sua conta
+      <LoginContainer>
+        <CardLoginForm>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h3>Acesse a sua conta</h3>
 
-          <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Digite seu usuário" autoFocus />
-          <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
+            <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Digite seu usuário" autoFocus />
+            <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
 
-          {
-            loading
-            ? <Loader />
-            : <Button
-                type="submit"
-                text="Continuar"
-                Icon={FaArrowRight}
-                className="form-button"
-                onKeyDown={handleSubmit}
-              />
-          }
+            {
+              loading
+              ? <Loader />
+              : <Button
+                  type="submit"
+                  text="Continuar"
+                  Icon={FaArrowRight}
+                  className="form-button"
+                  onKeyDown={handleSubmit}
+                />
+            }
 
-          <Link to="/recover">Esqueci minha senha</Link>
-          <Link to="/">Ainda não sou cliente</Link>
-        </Form>
+            <Link to="/recover">Esqueci minha senha</Link>
+            <Link to="/">Ainda não sou cliente</Link>
+          </Form>
+        </CardLoginForm>
+      </LoginContainer>
     </>
   )
 }

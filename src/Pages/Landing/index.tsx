@@ -35,11 +35,6 @@ import { AnyObject } from '../../types/utils'
 import { UserResponse } from '../../types/user'
 import updateReduxState from '../../services/updateReduxState'
 
-const fakePositive = {
-  background: 'green'
-}
-
-
 const Landing: React.FC = () => {
   const [username, setUsername] = useState('')
   const [name, setName] = useState('')

@@ -1,13 +1,15 @@
 import React from 'react'
 import Logo from '../Logo'
 
+import { HeaderContainer } from './styles'
+
 const Header: React.FC = () => {
   return (
-    <header>
+    <HeaderContainer>
       <div>
         <Logo />
       </div>
-    </header>
+    </HeaderContainer>
   )
 }
 

@@ -3,7 +3,7 @@ import img from "../../assets/feliz.png"
 
 export const BannerMargin = styled.div`
     margin: 0px auto;
-    width: 100vw;
+    width: 99vw;
     height: 80vh;
     padding: 0px 16px;
     background: #7CC5EA;
@@ -100,6 +100,7 @@ export const CardCadLogin = styled.div`
         font-size: 14px;
     }
 `
+
 export const Section = styled.div`
     display:flex;
     align-items:center;

@@ -39,6 +39,12 @@ export const CardRecover = styled.div`
   border-radius: 8px;
   padding: 2rem;
   animation: 0.8s ease 0s 1 normal forwards enterRight;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  .icon {
+    margin: 0.5rem auto;
+  }
 
   form {
     display: flex;

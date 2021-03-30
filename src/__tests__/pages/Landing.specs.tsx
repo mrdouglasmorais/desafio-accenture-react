@@ -11,7 +11,7 @@ jest.mock('react-router-dom', () => {
         },
         Link: ({ children }: { children: React.ReactNode }) => children
     }
-}) 
+})
 
 describe('SignUp Page', () => {
     it('shold be able to signup', () => {
@@ -24,16 +24,17 @@ describe('SignUp Page', () => {
         const usernameField = getByPlaceholderText('Escolha um nome de usuário')
         const passwordField = getByPlaceholderText('Digite sua senha')
         const rePasswordField = getByPlaceholderText('Confirme sua senha')
-        const buttonSubmit = getByText('Continuar')
+        const buttonSubmit = getByText('CONTINUAR')
 
-        fireEvent.change(cpfField, { target: { value: '12312312311'}})
+        fireEvent.change(cpfField, { target: { value: '12332312311'}})
         fireEvent.change(nameField, { target: { value: 'Jhon Wick da Silva'}})
-        fireEvent.change(usernameField, { target: { value: 'jhonwick'}})
-        fireEvent.change(passwordField, { target: { value: '654321'}})
-        fireEvent.change(rePasswordField, { target: { value: '654321'}})
+        fireEvent.change(usernameField, { target: { value: 'jhonwickson'}})
+        fireEvent.change(passwordField, { target: { value: '65432111'}})
+        fireEvent.change(rePasswordField, { target: { value: '65432111'}})
 
         fireEvent.click(buttonSubmit)
 
+        expect(mockedHistoryPush).toHaveBeenCalled()
         // expect(mockedHistoryPush).toHaveBeenCalledWith('/login')
     })
 })

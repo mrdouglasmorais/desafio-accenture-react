@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { FaArrowRight } from 'react-icons/fa'
@@ -21,11 +21,19 @@ import getIsAuth from '../../services/getIsAuth'
 import { CardLoginForm, LoginContainer } from './styles'
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [ username, setUsername ] = useState('')
+  const [ password, setPassword ] = useState('')
+  const [ loading, setLoading ] = useState(false)
+  const [ isFilled, setIsFilled ] = useState(false)
   const history = useHistory()
   const formRef = useRef<FormHandles>(null)
+
+  useEffect(() => {
+    if ( username.length > 3 &&
+      password.length > 3 ) setIsFilled(true)
+    else setIsFilled(false)
+  }, [username, password])
+
 
   const handleSubmit = useCallback(async (data: AnyObject) => {
     const filteredData: AnyObject = {}
@@ -95,6 +103,7 @@ const Login: React.FC = () => {
                   Icon={FaArrowRight}
                   className="form-button"
                   onKeyDown={handleSubmit}
+                  disabled={!isFilled ? true : false}
                 />
             }
 

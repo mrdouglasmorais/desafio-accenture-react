@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 
 import Button from '../../components/Button'
 import Header from '../../components/Header'
+import { RecoverContainer, CardRecover } from '../../styles/Shared'
 
 const Error: React.FC = () => {
     const history = useHistory()
@@ -17,9 +18,13 @@ const Error: React.FC = () => {
     return (
         <>
             <Header />
+            <RecoverContainer>
+                <CardRecover>
                     <FiAlertTriangle className="icon" size={102} />
                     <h3>Oops, algo deu errado!</h3>
                     <Button text="Voltar" Icon={FaArrowLeft} onClick={handleGoBack} />
+                </CardRecover>
+            </RecoverContainer>
         </>
     )
 }

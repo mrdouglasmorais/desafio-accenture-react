@@ -1,21 +1,16 @@
 import styled from 'styled-components'
 
-export const LoginContainer = styled.div`
-  background: #7cc5ea;
+export const RecoverContainer = styled.div`
   display: flex;
+  background: #7cc5ea;
   justify-content: center;
   align-content: center;
   width: 100vw;
-  height: 90vh;
-  padding-top: 2rem;
-  margin: 0;
-  @media(min-width: 600px) {
-    width: 99vw;
-  }
+  height: 100vh;
 `
 
-export const CardLoginForm = styled.div`
-  margin-top: 4rem;
+export const CardRecover = styled.div`
+  margin-top: 5rem;
   justify-self: center;
   justify-content: center;
   width: 80vw;
@@ -24,7 +19,7 @@ export const CardLoginForm = styled.div`
   background: white;
   border-radius: 8px;
   padding: 2rem;
-  h3 {
+  h2, p {
     color:#696969;
     font-family: 'Concert One', cursive;
     padding-bottom: 1rem;

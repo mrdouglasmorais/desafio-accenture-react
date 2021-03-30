@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState, useEffect } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom'
 import getValidationErrors from '../../utils/getValidationErrors'
@@ -11,6 +11,7 @@ import Button from '../../components/Button'
 import Header from '../../components/Header'
 import Input from '../../components/Input'
 import Loader from '../../components/Loader'
+import { RecoverContainer, CardRecover } from '../../styles/Shared'
 
 import { toast } from 'react-toastify'
 
@@ -21,9 +22,15 @@ const RecoverPassword: React.FC = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [temporaryPassword, setTemporaryPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const [isFilled, setIsFilled] = useState(false)
     const history = useHistory()
     const formUsernameRef = useRef<FormHandles>(null)
     const formPasswordRef = useRef<FormHandles>(null)
+
+    useEffect(() => {
+        if ( username.length > 3 ) setIsFilled(true)
+        else setIsFilled(false)
+      }, [username])
 
     const handleSubmitUsername = useCallback(async (dataProps: Record<string, unknown>) => {
         setLoading(true)
@@ -117,43 +124,44 @@ const RecoverPassword: React.FC = () => {
     return (
         <>
             <Header />
-
-            <div>
-                {isValidUsername ? (
-                    <Form ref={formPasswordRef} onSubmit={handleSubmitNewPassword}>
-                        <h2>Esqueci minha senha</h2>
-                        <p>Confirme seu nome de usuário e escolha uma nova senha</p>
-
-                        <div className="has-animation">
-                            <Input name="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua nova senha" autoFocus />
-                            <Input name="confirmPassword" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua nova senha" />
-                        </div>
-
-                        {loading ? <Loader /> : <Button
-                            text="Enviar"
-                            Icon={FaArrowRight}
-                            type="submit"
-                            style={{ marginTop: 28 }}
-                        />}
-                    </Form>
-                ) : (
-                        <Form ref={formUsernameRef} onSubmit={handleSubmitUsername} >
+            <RecoverContainer>
+                <CardRecover>
+                    {
+                    isValidUsername ? (
+                        <Form ref={formPasswordRef} onSubmit={handleSubmitNewPassword}>
                             <h2>Esqueci minha senha</h2>
                             <p>Confirme seu nome de usuário e escolha uma nova senha</p>
 
-                            <div>
-                                <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Confirme seu nome de usuário" autoFocus />
+                            <div className="has-animation">
+                                <Input name="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua nova senha" autoFocus />
+                                <Input name="confirmPassword" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua nova senha" />
                             </div>
 
                             {loading ? <Loader /> : <Button
-                                text="Prosseguir"
+                                text="Enviar"
                                 Icon={FaArrowRight}
                                 type="submit"
-                                style={{ marginTop: 28 }}
                             />}
                         </Form>
-                    )}
-            </div>
+                    ) : (
+                            <Form ref={formUsernameRef} onSubmit={handleSubmitUsername} >
+                                <h2>Esqueci minha senha</h2>
+                                <p>Confirme seu nome de usuário e escolha uma nova senha</p>
+
+                                <div>
+                                    <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Confirme seu nome de usuário" autoFocus />
+                                </div>
+
+                                {loading ? <Loader /> : <Button
+                                    text="Prosseguir"
+                                    Icon={FaArrowRight}
+                                    type="submit"
+                                    disabled={!isFilled ? true : false}
+                                />}
+                            </Form>
+                        )}
+                </CardRecover>
+            </RecoverContainer>
         </>
     )
 }

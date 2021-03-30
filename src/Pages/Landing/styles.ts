@@ -8,18 +8,31 @@ export const BannerMargin = styled.div`
     padding: 0px 16px;
     background: #7CC5EA;
 `
-export const LogoImg= styled.div`
 
-    div{
+export const LogoImg = styled.div`
+
+    div {
         display:flex;
         justify-content:center;
     }
 
-    img{
+    img {
      width:100%;
-
-
     }
+`
+
+export const StyleMargTop = styled.div`
+    border-bottom: 80px solid  #7CC5EA;
+    border-right: 100vw solid transparent;
+    border-left: 0 solid transparent;
+`
+
+export const StyleMargBotton = styled.div`
+    border-top: 80px solid  #7CC5EA;
+    width: 0;
+    height: 0;
+    border-right: 0 solid transparent;
+    border-left: 100vw  solid transparent;
 
 `
 export const Banner = styled.div`
@@ -30,6 +43,7 @@ export const Banner = styled.div`
     justify-content: space-between;
     height: 80vh;
 `
+
 export const CardAcess = styled.div`
     display:flex;
     justify-content:flex-end;
@@ -109,15 +123,22 @@ export const CardCadLogin = styled.div`
     }
 `
 
+export const CardMargin = styled.div`
+    margin: 0px auto;
+    width: 100%;
+    height: 100vh;
+    padding: 0px 16px;
+
+
+`
 export const Section = styled.div`
     display:flex;
     align-items:center;
-    padding:60px;
     background-image: url(${img});
-    background-size:50%;
-    height: 90vh;
-    //width: 100%;
-    max-width: 1120px;
+    background-size:55%;
+    height: 100vh;
+    width: 100%;
+    max-width: 1520px;
     margin: 0 auto;
     background-repeat: no-repeat;
     background-position:right bottom;
@@ -134,7 +155,7 @@ export const Section = styled.div`
         display: block;
         margin-left: auto;
         margin-right: auto;
-        font-family: 'Concert One', cursive;
+
         font-size: 1.5rem;
         font-family: Roboto;
         color: white;
@@ -147,22 +168,10 @@ export const Section = styled.div`
             color: white;
             background:#95d4db ;
             }
-    }
-`
-
-export const StyleMargTop = styled.div`
-    border-bottom: 80px solid  #7CC5EA;
-    border-right: 100vw solid transparent;
-    border-left: 0 solid transparent;
-`
-export const StyleMargBotton = styled.div`
-    border-top: 80px solid  #7CC5EA;
-    width: 0;
-    height: 0;
-    border-right: 0 solid transparent;
-    border-left: 100vw  solid transparent;
+}
 
 `
+
 export const CardStud = styled.div`
     width: 100%;
     height: 139vh;
@@ -171,11 +180,58 @@ export const CardStud = styled.div`
         width: 100%;
         height: auto;
     }
-
 `
+
 export const CardSection = styled.section`
-    width:100%;
-    height:200px;
-    background:red;
+
+    margin: 0px auto;
+    width: 100%;
+    height: 100vh;
+    padding: 0px 16px;
+    background: linear-gradient(340deg,  rgb(19, 184, 235) 20%, rgb(67, 238, 238)  55%, rgb(122, 243, 217) 60%, rgb(197, 248, 237) 100% );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:yellow;
+
+    section{
+        width:30%;
+            span{
+                font-size:90px;
+                font-family: 'Londrina Shadow', cursive;
+                font-weight:bold;
+                //font-family: 'Londrina Sketch', cursive;
+
+            }
+            P{
+                margin-top:40px;
+                font-size:30px;
+                color:#696969;
+               font-weight:bold;
+
+            }
+ }
+
+    aside{
+        display:flex;
+        justify-content:center;
+        width:30%;
+
+    span{
+        font-size: 150px;
+        font-weight:bold;
+    }
+}
+`
+
+
+export const CardFooter = styled.div`
+margin: 0px auto;
+    width: 100%;
+    height: 100vh;
+    padding: 0px 16px;
+    background: yellow;
+
 
 `

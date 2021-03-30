@@ -21,8 +21,10 @@ import {
   StyleMargTop,
   StyleMargBotton,
   CardStud,
-  CardSection
-  } from './styles'
+  CardSection,
+  CardMargin,
+  CardFooter
+} from './styles'
 import LogoImgnow from '../../assets/logonow.png'
 
 
@@ -160,72 +162,71 @@ const Landing: React.FC = () => {
   return (
     <>
 
-      <CardAcess>
+
+<CardAcess>
         <button onClick={handleRedirectToLogin}>Acessar minha conta!</button>
       </CardAcess>
-      <div>
 
-        <StyleMargTop />
-        <BannerMargin>
+      <StyleMargTop />
+      <BannerMargin>
 
-          <Banner>
-            <LogoImg>
-              <img src={LogoImgnow} alt="" />
-              <div>
-                <p>Uma conta digital do seu tempo!</p>
-              </div>
-            </LogoImg>
+        <Banner>
+          <LogoImg>
+            <img src={LogoImgnow} alt="" />
+            <div>
+              <p>Uma conta digital do seu tempo!</p>
+            </div>
+          </LogoImg>
 
-            <CardCadLogin>
-              <Form ref={formRef} onSubmit={handleSubmit}>
-                <h2> Solicite sua conta e cartão de crédito do NoWBank agora!</h2>
-                <Input name="cpf" maxLength={14} value={cpfMask} onChange={handleSetCpfMask} placeholder="Digite seu CPF" />
-                <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Escolha um nome de usuário" />
-                <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
-                <Input name="password" value={password} type="password" onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" />
-                <Input name="confirmPassword" value={confirmPassword} type="password" onChange={handleSetConfirmPassword} placeholder="Confirme sua senha" />
-                {
-                  !passwordMatch ? <span>Senha diferente</span> : null
-                }
-                {loading ? <Loader /> : <button type="submit" disabled={!isFilled ? true : false}>CONTINUAR<FaArrowRight className="ArrowRight" /></button>}
-              </Form>
-            </CardCadLogin>
+          <CardCadLogin>
+            <Form ref={formRef} onSubmit={handleSubmit}>
+              <h2> Solicite sua conta e cartão de crédito do NoWBank agora!</h2>
+              <Input name="cpf" maxLength={14} value={cpfMask} onChange={handleSetCpfMask} placeholder="Digite seu CPF" />
+              <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Escolha um nome de usuário" />
+              <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
+              <Input name="password" value={password} type="password" onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" />
+              <Input name="confirmPassword" value={confirmPassword} type="password" onChange={handleSetConfirmPassword} placeholder="Confirme sua senha" />
+              {
+                !passwordMatch && <span>Senha diferente</span>
+              }
+              {
+                loading ?
+                <Loader /> : <button type="submit">CONTINUAR<FaArrowRight className="ArrowRight" /></button>}
+            </Form>
+          </CardCadLogin>
+        </Banner>
+      </BannerMargin>
+      <StyleMargBotton />
 
-          </Banner>
-        </BannerMargin>
-        <StyleMargBotton />
-      </div>
-
-      <Section>
-
-        <div>
-
-          <p>Sem taxa de manutenção nem tarifas escondidas.
+      <CardMargin>
+        <Section>
+          <div>
+            <p>Sem taxa de manutenção nem tarifas escondidas.
           <br />Com nossa Conta digital, seu investimento rende mais que a poupança!</p>
-          <button>ok</button>
-
-        </div>
-      </Section>
+            <button>Solicite uma conta</button>
+          </div>
+        </Section>
+      </CardMargin>
 
       <CardStud>
-        <img src={ImgStud} alt=""/>
+        { /*<img src={ImgStud} alt="" />*/}
       </CardStud>
 
+
       <CardSection>
-        <div>
-          <div>
-            <div>
-              <span>Zero anuidade</span>
-              <p>Burocracia custa caro. Somos eficientes para você não ter que pagar tarifas.</p>
-            </div>
-            <div>
+
+          <section>
+            <span>ZERO ANUIDADE</span>
+            <p>Burocracia custa caro. Somos eficientes para você não ter que pagar tarifas.</p>
+          </section>
+            <aside>
               <span>0,00</span>
-            </div>
-          </div>
-        </div>
+            </aside>
+
       </CardSection>
 
-      <section>
+
+      <CardFooter>
         <div>
           <div>
             <div>
@@ -234,24 +235,25 @@ const Landing: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
 
-      <div>
+
         <div>
           <div>
             <div>
-              <span>Simplifique a sua vida. Peça seu convite.</span>
-              <p>GamaAcademy Bank Line S.A. - CNPJ 00.000.000/0000-00</p>
+              <div>
+                <span>Simplifique a sua vida. Peça seu convite.</span>
+                <p>GamaAcademy Bank Line S.A. - CNPJ 00.000.000/0000-00</p>
 
-              <p>Rua Fictícia, 999 - 00000-000 - São Paulo, SP</p>
-              <p>Este é um projeto de avaliação | GamaAcademy | Accenture | 2021</p>
-            </div>
-            <div>
-              <img src={ImgCellPhone} alt="Imagem de um celular" />
+                <p>Rua Fictícia, 999 - 00000-000 - São Paulo, SP</p>
+                <p>Este é um projeto de avaliação | GamaAcademy | Accenture | 2021</p>
+              </div>
+              <div>
+                <img src={ImgCellPhone} alt="Imagem de um celular" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </CardFooter>
     </>
   )
 }

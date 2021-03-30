@@ -40,6 +40,15 @@ export const CardRecover = styled.div`
   padding: 2rem;
   animation: 0.8s ease 0s 1 normal forwards enterRight;
 
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .loader {
+      margin: 0.5rem auto;
+    }
+  }
+
   h3, h2, p {
     line-height: 1.25rem;
     color:#696969;
@@ -51,10 +60,10 @@ export const CardRecover = styled.div`
       background:#7CC5EA;
       border-radius: 20px;
       height: 40px;
-      width: 100%;
+      width: 80%;
       max-height: 50%;
       border: none;
-      margin-top: 40px;
+      margin: 3rem auto 1rem;
       font-family: Roboto;
       font-size: 18px;
       display: flex;

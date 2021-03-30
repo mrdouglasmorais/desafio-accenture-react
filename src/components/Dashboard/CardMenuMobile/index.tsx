@@ -17,6 +17,7 @@ const CardMenuMobile: React.FC<ComponentProp> = ( props ) => {
     return (
         <>
             <div onClick={changeComponent}>
+                <p>Mobile!</p>
                 <img src={pixIcon} alt="pix icon" />
                 <span>{props.title}</span>
             </div>

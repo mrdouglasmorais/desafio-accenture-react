@@ -12,6 +12,7 @@ const CardMenu: React.FC<ComponentProp> = ( { selected, ...props } ) => {
     return (
         <>
             <div { ...props } className={selected ? 'card-selected' : ''}>
+                <p>Desktop</p>
                 <img src={pixIcon} alt="pix icon" />
                 <span>{props.title}</span>
             </div>

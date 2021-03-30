@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { FiLogOut, FiAlignRight } from 'react-icons/fi'
 import gamaIcon from '../../assets/svgs/gama-icon.svg'
@@ -23,7 +23,25 @@ const Dashboard: React.FC = () => {
 
   const [ modalIsOpen, setIsOpen ] = useState(false)
   const [ isExiting, setIsExiting ] = useState(false)
+  const [ width, setWidth ] = useState<number>(window.innerWidth)
+  const [ isMobile, setIsMobile] = useState(false)
 
+
+  // Set Width
+  const handleWindowSize = () => {
+    setWidth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    console.log('modalIsOpen?', modalIsOpen)
+    window.addEventListener('resize', handleWindowSize)
+    width < 768
+      ? setIsMobile(true)
+      : setIsMobile(false)
+    return () => {
+        window.removeEventListener('resize', handleWindowSize)
+    }
+  }, [])
   //Setting data accounts;
   const changeComponent = useCallback((title: Screen) => {
     setIsOpen(false)

@@ -158,30 +158,44 @@ export const Section = styled.div`
 
 export const CardSection = styled.section`
 
-margin: 0px auto;
+    margin: 0px auto;
     width: 100%;
     height: 100vh;
     padding: 0px 16px;
     background: linear-gradient(340deg,  rgb(19, 184, 235) 20%, rgb(67, 238, 238)  55%, rgb(122, 243, 217) 60%, rgb(197, 248, 237) 100% );
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:yellow;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:yellow;
 
-  section{
-    display: block;
-        margin-left: auto;
-        margin-right: auto;
- background:red;
- width:30%;
+    section{
+        width:30%;
+            span{
+                font-size:90px;
+                font-family: 'Londrina Shadow', cursive;
+                font-weight:bold;
+                //font-family: 'Londrina Sketch', cursive;
+              
+            }
+            P{
+                margin-top:40px;
+                font-size:30px; 
+                color:#696969;
+               font-weight:bold;
+               
+            }
  }
 
- div{
+ aside{
     display:flex;
   justify-content:center;
- background:blue;
+
  width:30%;
+span{
+     font-size: 150px;
+     font-weight:bold;
+ }
  }
 `
 

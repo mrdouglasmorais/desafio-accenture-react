@@ -192,12 +192,12 @@ const Landing: React.FC = () => {
       <CardSection>
        
           <section>
-            <span>Zero anuidade</span>
+            <span>ZERO ANUIDADE</span>
             <p>Burocracia custa caro. Somos eficientes para você não ter que pagar tarifas.</p>
           </section>
-            <div>
+            <aside>
               <span>0,00</span>
-            </div>
+            </aside>
        
       </CardSection>
 

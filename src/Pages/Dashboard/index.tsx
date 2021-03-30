@@ -97,7 +97,7 @@ const Dashboard: React.FC = () => {
         // </div>
   return (
     <>
-      { isExiting && <ExitModal setResponse={ handleLogOut } /> }
+      { isExiting && <ExitModal isMobile={isMobile} setResponse={ handleLogOut } /> }
 
       <DashboardContainer className={ isMobile ? 'is-mobile' : 'is-desktop'}>
         <DashMain className='dash-main' style={ isMobile ? {order: 1} : {order: 2} }>

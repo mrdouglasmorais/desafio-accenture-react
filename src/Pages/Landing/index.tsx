@@ -144,13 +144,13 @@ const Landing: React.FC = () => {
     <>
 
 
-      <CardAcess>
+<CardAcess>
         <button onClick={handleRedirectToLogin}>Acessar minha conta!</button>
       </CardAcess>
 
       <StyleMargTop />
       <BannerMargin>
-
+    
         <Banner>
           <LogoImg>
             <img src={LogoImgnow} alt="" />

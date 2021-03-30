@@ -161,9 +161,7 @@ const Landing: React.FC = () => {
 
   return (
     <>
-
-
-<CardAcess>
+      <CardAcess>
         <button onClick={handleRedirectToLogin}>Acessar minha conta!</button>
       </CardAcess>
 

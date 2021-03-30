@@ -14,10 +14,7 @@ import { ApplicationStore } from '../../store'
 import { change_screen } from '../../store/dashboard/actions'
 import { Screen } from '../../store/dashboard/types'
 import ExitModal from '../../components/Dashboard/ExitModal'
-import { DashboardContainer,
-  DashMain,
-  DashNavigation
-} from './styles'
+import { DashboardContainer } from './styles'
 
 const Dashboard: React.FC = () => {
   const history = useHistory()
@@ -69,6 +66,8 @@ const Dashboard: React.FC = () => {
       setIsOpen(true)
   }
 
+  // { isExiting && <ExitModal setResponse={ handleLogOut } /> }
+
   //       {
   //         modalIsOpen && ( <div onClick={setModal}>
 
@@ -89,29 +88,29 @@ const Dashboard: React.FC = () => {
   //         </div>
   //       )}
 
-        // <div style={{border: '2px solid pink'}}>
-        //   <img className="logo" src={gamaIcon} alt="Gama icon"/>
-        //   <div>
-        //     <FiAlignRight color="#999" size={ 60 } onClick={() => setModal()} ></FiAlignRight>
-        //   </div>
-        // </div>
   return (
     <>
-      { isExiting && <ExitModal setResponse={ handleLogOut } /> }
+      <DashboardContainer className={ isMobile ? 'is-mobile' : ''}>
 
-      <DashboardContainer className={ isMobile ? 'is-mobile' : 'is-desktop'}>
-        <DashMain className='dash-main' style={ isMobile ? {order: 1} : {order: 2} }>
-          <main style={{border: '2px solid green'}}>
-            {/* Render component by currentScreen */}
-            {currentScreen === 'Depósitos' && <Deposit />}
-            {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
-            {currentScreen === 'Planos' && <Plans />}
-            {currentScreen === 'Transações' && <Transactions></Transactions>}
-          </main>
-        </DashMain>
+        <div style={{border: '2px solid pink'}}>
+          <img className="logo" src={gamaIcon} alt="Gama icon"/>
+          <div>
+            <FiAlignRight color="#999" size={ 60 } onClick={() => setModal()} ></FiAlignRight>
+          </div>
+        </div>
 
-        <DashNavigation className='dash-navigation' style={ isMobile ? {order: 2} : {order: 1}}>
-          <nav>
+        <main style={{border: '2px solid green'}}>
+          {/* Render component by currentScreen */}
+          {currentScreen === 'Depósitos' && <Deposit />}
+          {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
+          {currentScreen === 'Planos' && <Plans />}
+          {currentScreen === 'Transações' && <Transactions></Transactions>}
+        </main>
+
+        <div>
+          <nav style={{background: '#999'}}>
+            <div style={{border: '2px solid red'}}>
+              <img className="logo" src={gamaIcon} alt="Gama icon" />
               <CardMenu title='Depósitos' onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
               <CardMenu title='Planos' onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
               <CardMenu title='Pagamentos' onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
@@ -120,8 +119,10 @@ const Dashboard: React.FC = () => {
               <button onClick={ () => setIsExiting(true) } >
                 <FiLogOut color="#fff" size={ 20 } />
               </button>
+            </div>
           </nav>
-        </DashNavigation>
+
+        </div>
       </DashboardContainer>
     </>
   )

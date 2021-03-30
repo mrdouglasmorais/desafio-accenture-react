@@ -57,10 +57,18 @@ export const CardCadLogin = styled.div`
     width: 350px;
     max-width: 100%;
     min-height: 450px;
-    background:white;
+    background: white;
     border-radius: 8px;
     padding: 40px 46px;
-    h2{
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .loader {
+            margin: 0.5rem auto;
+        }
+    }
+    h2 {
         color:#696969;
         font-family: 'Concert One', cursive;
     }
@@ -69,9 +77,9 @@ export const CardCadLogin = styled.div`
         background:#7CC5EA;
         border-radius: 20px;
         height: 40px;
-        width: 100%;
+        width: 80%;
         border: none;
-        margin-top: 40px;
+        margin: 1.5rem auto 0.5rem;
         font-family: Roboto;
         font-size: 18px;
         display: flex;

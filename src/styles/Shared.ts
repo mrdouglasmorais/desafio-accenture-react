@@ -1,11 +1,7 @@
 import styled from 'styled-components'
 
 export const Loading = styled.span`
-  display: inline-block;
   text-align: center;
-  justify-self: center;
-  justify-content: center;
-  align-content: center;
   width: 4rem;
   height: 4rem;
   z-index: 10;

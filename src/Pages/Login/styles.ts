@@ -9,7 +9,7 @@ export const LoginContainer = styled.div`
   height: 90vh;
   padding-top: 2rem;
   margin: 0;
-  @media(min-width: 600px) {
+  @media only screen and (min-width: 768px) {
     width: 99vw;
   }
 `
@@ -35,10 +35,10 @@ export const CardLoginForm = styled.div`
       background:#7CC5EA;
       border-radius: 20px;
       height: 40px;
-      width: 100%;
       max-height: 50%;
       border: none;
-      margin-top: 40px;
+      width: 80%;
+      margin: 1.5rem auto 0.5rem;
       font-family: Roboto;
       font-size: 18px;
       display: flex;
@@ -84,7 +84,7 @@ export const CardLoginForm = styled.div`
 
   /* Desktop */
   @media only screen and (min-width: 768px) {
-    width: 30vw;
+    width: 25vw;
     max-width: 50vw;
     height: 40vh;
     min-height: 30vh;

@@ -72,7 +72,7 @@ const Balance: React.FC<AccountProps> = (props) => {
 
   return (
     <>
-      <div>
+      <div style={{border: 'solid 2px blue'}}>
         <div>
           <p>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</p>
           <div>

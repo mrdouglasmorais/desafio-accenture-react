@@ -1,5 +1,25 @@
 import styled from 'styled-components'
 
+export const Loading = styled.span`
+  display: inline-block;
+  text-align: center;
+  justify-self: center;
+  justify-content: center;
+  align-content: center;
+  width: 4rem;
+  height: 4rem;
+  z-index: 10;
+  border: 0.75rem solid #f3f3f3;
+  border-top: 0.75rem solid #7cc5ea;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`
+
 export const RecoverContainer = styled.div`
   display: flex;
   background: #7cc5ea;
@@ -22,6 +42,8 @@ export const CardRecover = styled.div`
   background: white;
   border-radius: 8px;
   padding: 2rem;
+  animation: 0.8s ease 0s 1 normal forwards enterRight;
+
   h3, h2, p {
     line-height: 1.25rem;
     color:#696969;
@@ -72,9 +94,21 @@ export const CardRecover = styled.div`
     text-decoration: none;
     font-size: 12px;
   }
-
+  /* Animation enterRight */
+  @keyframes enterRight {
+    0% {
+      position: relative;
+      left: -50px;
+      opacity: 0.4;
+      }
+    100% {
+      position: relative;
+      left: 0;
+      opacity: 1;
+    }
+  }
   /* Desktop */
-  @media(min-width: 600px) {
+  @media only screen and (min-width: 768px) {
     width: 30vw;
     max-width: 50vw;
     height: 40vh;
@@ -84,13 +118,5 @@ export const CardRecover = styled.div`
     padding-top: 1.5rem;
     padding-bottom: 0.25rem;
     font-size: 14px;
-  }
-
-  /* Desktop */
-  @media(min-width: 600px) {
-    width: 30vw;
-    max-width: 50vw;
-    height: 40vh;
-    min-height: 30vh;
   }
 `

@@ -51,13 +51,16 @@ const Dashboard: React.FC = () => {
     <>
         { isExiting && <ExitModal setResponse={ handleLogOut } /> }
 
-        {modalIsOpen && (
-          <div onClick={setModal}>
+        {
+          modalIsOpen && ( <div onClick={setModal}>
 
-            <CardMenuMobile title = 'Depósitos' func={changeComponent} />
-            <CardMenuMobile title = 'Planos' func={changeComponent} />
-            <CardMenuMobile title = 'Pagamentos' func={changeComponent}  />
-            <CardMenuMobile title = 'Transações' func={changeComponent} />
+            <div style={{border: '2px solid red'}}>
+              <CardMenuMobile title = 'Depósitos' func={changeComponent} />
+              <CardMenuMobile title = 'Planos' func={changeComponent} />
+              <CardMenuMobile title = 'Pagamentos' func={changeComponent}  />
+              <CardMenuMobile title = 'Transações' func={changeComponent} />
+            </div>
+
             <div onClick={ () => {
               setIsExiting(true)
               setIsOpen(false)
@@ -76,6 +79,7 @@ const Dashboard: React.FC = () => {
       </div>
       <div>
         <nav style={{background: '#999'}}>
+        <div style={{border: '2px solid red'}}>
           <img className="logo" src={gamaIcon} alt="Gama icon" />
           <CardMenu title='Depósitos' onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
           <CardMenu title='Planos' onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
@@ -85,6 +89,7 @@ const Dashboard: React.FC = () => {
           <button onClick={ () => setIsExiting(true) } >
             <FiLogOut color="#fff" size={ 20 } />
           </button>
+          </div>
 
         </nav>
         <main style={{background: '#ddd'}}>

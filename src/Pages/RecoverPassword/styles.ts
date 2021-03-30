@@ -70,7 +70,7 @@ export const CardRecover = styled.div`
   }
 
   /* Desktop */
-  @media(min-width: 600px) {
+  @media only screen and (min-width: 768px) {
     width: 30vw;
     max-width: 50vw;
     height: 40vh;

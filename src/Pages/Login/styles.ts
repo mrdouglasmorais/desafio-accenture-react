@@ -24,6 +24,7 @@ export const CardLoginForm = styled.div`
   background: white;
   border-radius: 8px;
   padding: 2rem;
+  animation: 0.8s ease 0s 1 normal forwards enterRight;
   h3 {
     color:#696969;
     font-family: 'Concert One', cursive;
@@ -73,9 +74,16 @@ export const CardLoginForm = styled.div`
     text-decoration: none;
     font-size: 12px;
   }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  .loader {
+    margin: 0.5rem auto;
+  }
 
   /* Desktop */
-  @media(min-width: 600px) {
+  @media only screen and (min-width: 768px) {
     width: 30vw;
     max-width: 50vw;
     height: 40vh;
@@ -85,5 +93,19 @@ export const CardLoginForm = styled.div`
     padding-top: 1.5rem;
     padding-bottom: 0.25rem;
     font-size: 14px;
+  }
+
+  /* Animation enterRight */
+  @keyframes enterRight {
+    0% {
+      position: relative;
+      left: -50px;
+      opacity: 0.4;
+      }
+    100% {
+      position: relative;
+      left: 0;
+      opacity: 1;
+    }
   }
 `

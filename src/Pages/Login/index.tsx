@@ -107,8 +107,8 @@ const Login: React.FC = () => {
                 />
             }
 
-            <Link to="/recover">Esqueci minha senha</Link>
-            <Link to="/">Ainda não sou cliente</Link>
+            <Link to="/recover">Esqueci minha senha &gt;</Link>
+            <Link to="/">Ainda não sou cliente &gt;</Link>
           </Form>
         </CardLoginForm>
       </LoginContainer>

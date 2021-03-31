@@ -19,6 +19,11 @@ export const ExitContainer = styled.div`
       opacity: 1;
     }
   }
+  h1 {
+    color: #696969;
+    font-family: 'Concert One', cursive;
+    padding-bottom: 1rem;
+  }
 `
 
 export const CardExit = styled.div`
@@ -35,7 +40,7 @@ export const CardExit = styled.div`
   text-align: center;
   button {
       cursor: pointer;
-      background:#7CC5EA;
+      background: #7CC5EA;
       border-radius: 20px;
       height: 48px;
       width: 70%;

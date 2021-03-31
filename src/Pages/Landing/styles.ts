@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import img from "../../assets/feliz.png"
 import ImgCellPhone from '../../assets/landing-3.png'
 
-
 export const BannerMargin = styled.div`
     margin: 0px auto;
     width: 100vw;
@@ -14,14 +13,11 @@ export const BannerMargin = styled.div`
         height: 100vh;
   }
 `
-
 export const LogoImg = styled.div`
-
     div {
         display:flex;
         justify-content:center;
     }
-
     img {
      width:100%;
     }
@@ -33,12 +29,8 @@ export const LogoImg = styled.div`
         }
         @media(max-width: 600px) {
             p{font-size: 1.3rem;}
-            }
-  
-
-    
+            }  
 `
-
 export const StyleMargTop = styled.div`
     border-bottom: 80px solid  #7CC5EA;
     border-right: 100vw solid transparent;
@@ -48,7 +40,6 @@ export const StyleMargTop = styled.div`
   }
 
 `
-
 export const StyleMargBotton = styled.div`
     border-top: 80px solid  #7CC5EA;
     width: 0;
@@ -73,7 +64,6 @@ export const Banner = styled.div`
     }
  
 `
-
 export const CardAcess = styled.div`
     display:flex;
     justify-content:flex-end;
@@ -215,9 +205,6 @@ export const Section = styled.div`
 
     height: 100vh;
     width: 100%;
-  
-   
-
     div{
         width: 80%;
         margin: auto auto;
@@ -251,8 +238,6 @@ export const Section = styled.div`
   }
 
 `
-
-
 export const CardSection = styled.section`
 
     margin: 0px auto;
@@ -297,13 +282,10 @@ export const CardSection = styled.section`
                 font-size:4rem;
                 grid-area: h1;
                 text-align: center;
-
             }
             p{
-            
                 grid-area: span;
                 text-align: center;
-       
             }
             span{
            
@@ -312,14 +294,15 @@ export const CardSection = styled.section`
                  }
 }
 `
-
-
 export const CardFooter = styled.div`
+margin: 0 auto;
+max-width:1200px;
+
 padding:20px;
 background-image: url(${ImgCellPhone});
     background-repeat: no-repeat;
     background-position:right bottom;
-    background-size:30%;
+    background-size:25%;
     width: 100vw;
     height: 60vh;
 ul{
@@ -343,10 +326,6 @@ footer{
             }
         }
     }
-
-   
-
-
 li{
     list-style:none;
 }

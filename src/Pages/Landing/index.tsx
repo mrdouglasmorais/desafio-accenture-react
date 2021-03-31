@@ -160,8 +160,6 @@ const Landing: React.FC = () => {
 
   return (
     <>
-
-
       <CardAcess>
         <button onClick={handleRedirectToLogin}>Acessar minha conta!</button>
       </CardAcess>
@@ -262,8 +260,6 @@ const Landing: React.FC = () => {
         </li>
     </ul>
 
-
-
         <footer>
           <div>
           <h1>Simplifique a sua vida. Peça seu convite.</h1>
@@ -273,11 +269,9 @@ const Landing: React.FC = () => {
 
           </div>
         <aside>
-   
+
         </aside>
         </footer>
-
-
 
 
       </CardFooter>

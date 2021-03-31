@@ -1,9 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { FiLogOut, FiAlignRight } from 'react-icons/fi'
-import gamaIcon from '../../assets/svgs/gama-icon.svg'
+import logoNow from '../../assets/logonow.png'
 import CardMenu from '../../components/Dashboard/CardMenu'
-import CardMenuMobile from '../../components/Dashboard/CardMenuMobile'
 import Deposit from '../../components/Dashboard/Deposit'
 import Payments from '../../components/Dashboard/Payments'
 import Plans from '../../components/Dashboard/Plans'
@@ -14,26 +12,39 @@ import { ApplicationStore } from '../../store'
 import { change_screen } from '../../store/dashboard/actions'
 import { Screen } from '../../store/dashboard/types'
 import ExitModal from '../../components/Dashboard/ExitModal'
+import { DashboardContainerMobile,
+  DashMainMobile,
+  DashNavigationMobile,
+  DashboardContainer,
+  DashMain,
+  DashNavigation
+} from './styles'
+
+import {
+  BtnContainerMobile, BtnIconMobile, LabelMobile,  ExitBtnContainer
+} from '../../styles/DashBoardButtons'
 
 const Dashboard: React.FC = () => {
   const history = useHistory()
   const dispatch = useDispatch()
+  const store = useSelector((state: ApplicationStore) => state.user)
 
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen)
 
-  const [ modalIsOpen, setIsOpen ] = useState(false)
+  const [ user, setUser ] = useState('')
   const [ isExiting, setIsExiting ] = useState(false)
   const [ width, setWidth ] = useState<number>(window.innerWidth)
-  const [ isMobile, setIsMobile] = useState(false)
+  const [ isMobile, setIsMobile ] = useState(false)
 
-
-  // Set Width
   const handleWindowSize = () => {
     setWidth(window.innerWidth)
   }
 
   useEffect(() => {
-    console.log('modalIsOpen?', modalIsOpen)
+    if (store) setUser(store.name)
+  }, [store])
+
+  useEffect(() => {
     window.addEventListener('resize', handleWindowSize)
     width < 768
       ? setIsMobile(true)
@@ -44,7 +55,6 @@ const Dashboard: React.FC = () => {
   }, [])
   //Setting data accounts;
   const changeComponent = useCallback((title: Screen) => {
-    setIsOpen(false)
     dispatch( change_screen(title) )
   }, [dispatch])
 
@@ -58,66 +68,112 @@ const Dashboard: React.FC = () => {
     }
   }, [ dispatch, history ])
 
-  function setModal() {
-    if (modalIsOpen === true)
-      setIsOpen(false)
-    else
-      setIsOpen(true)
-  }
 
   return (
     <>
-        { isExiting && <ExitModal setResponse={ handleLogOut } /> }
+      { isExiting && <ExitModal isMobile={isMobile} setResponse={ handleLogOut } /> }
 
-        {
-          modalIsOpen && ( <div onClick={setModal}>
+      {
+        isMobile
+        ?
+          <DashboardContainerMobile>
 
-            <div style={{border: '2px solid red'}}>
-              <CardMenuMobile title = 'Depósitos' func={changeComponent} />
-              <CardMenuMobile title = 'Planos' func={changeComponent} />
-              <CardMenuMobile title = 'Pagamentos' func={changeComponent}  />
-              <CardMenuMobile title = 'Transações' func={changeComponent} />
-            </div>
+            <DashMainMobile>
+              <main>
+                {/* Render component by currentScreen */}
+                {currentScreen === 'Depósitos' && <Deposit />}
+                {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
+                {currentScreen === 'Planos' && <Plans />}
+                {currentScreen === 'Transações' && <Transactions></Transactions>}
+              </main>
+            </DashMainMobile>
 
-            <div onClick={ () => {
-              setIsExiting(true)
-              setIsOpen(false)
-            }}>
-              <FiLogOut size={16} color="#fff" style={{ marginRight: 8 }} />
-              Sair
-            </div>
-          </div>
-        )}
-      <div>
-        <img className="logo" src={gamaIcon} alt="Gama icon"/>
-        <div>
-        <FiAlignRight color="#fff" size={ 60 } onClick={() => setModal()} ></FiAlignRight>
-        </div>
+            <DashNavigationMobile>
+              <nav>
+                <CardMenu isMobile={isMobile}
+                  backgroundColor='#7cc5ea'
+                  title='Depósitos'
+                  onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
+                <CardMenu isMobile={isMobile}
+                  backgroundColor='#7cc5ea'
+                  title='Planos'
+                  onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
+                <CardMenu isMobile={isMobile}
+                  backgroundColor='#7cc5ea'
+                  title='Pagamentos'
+                  onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
+                <CardMenu isMobile={isMobile}
+                  backgroundColor='#7cc5ea'
+                  title='Transações'
+                  onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
 
-      </div>
-      <div>
-        <nav style={{background: '#999'}}>
-        <div style={{border: '2px solid red'}}>
-          <img className="logo" src={gamaIcon} alt="Gama icon" />
-          <CardMenu title='Depósitos' onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
-          <CardMenu title='Planos' onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
-          <CardMenu title='Pagamentos' onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
-          <CardMenu title='Transações' onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
+                <BtnContainerMobile backgroundColor='#7cc5ea' onClick={ () => setIsExiting(true) }>
+                    <BtnIconMobile className="material-icons icon">
+                      logout
+                    </BtnIconMobile>
+                    <LabelMobile>Sair</LabelMobile>
+                </BtnContainerMobile>
+              </nav>
+            </DashNavigationMobile>
 
-          <button onClick={ () => setIsExiting(true) } >
-            <FiLogOut color="#fff" size={ 20 } />
-          </button>
-          </div>
+          </DashboardContainerMobile>
+        :
+          <DashboardContainer>
 
-        </nav>
-        <main style={{background: '#ddd'}}>
-          {/* Render component by currentScreen */}
-          {currentScreen === 'Depósitos' && <Deposit />}
-          {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
-          {currentScreen === 'Planos' && <Plans />}
-          {currentScreen === 'Transações' && <Transactions></Transactions>}
-        </main>
-      </div>
+            <DashNavigation>
+              <div className="top">
+                <img className="logo" style={{ margin: '0.5rem 0 0.5rem 4rem', width: '15%' }} src={logoNow} alt="NowBank icon"/>
+                <ExitBtnContainer onClick={ () => setIsExiting(true) } >
+                  <div className="exit-button-top">
+                    <span className="material-icons">
+                      account_circle
+                    </span>
+                    <span>{user.split(' ')[0]}</span>
+                    <span className="material-icons">
+                      expand_less
+                    </span>
+                  </div>
+                  <div className="exit-button-bottom">
+                    <span className="material-icons">
+                      logout
+                    </span>
+                    <span>Sair</span>
+                  </div>
+                </ExitBtnContainer>
+              </div>
+
+              <nav className="bottom">
+                <CardMenu isMobile={isMobile}
+                  backgroundColor='#78DA78'
+                  title='Depósitos'
+                  onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
+                <CardMenu isMobile={isMobile}
+                  backgroundColor='#A2ABFE'
+                  title='Planos'
+                  onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
+                <CardMenu isMobile={isMobile}
+                  backgroundColor='#FDBC7E'
+                  title='Pagamentos'
+                  onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
+                <CardMenu isMobile={isMobile}
+                  backgroundColor='#7cc5ea'
+                  title='Transações'
+                  onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
+              </nav>
+            </DashNavigation>
+
+            <DashMain>
+              <main>
+                {/* Render component by currentScreen */}
+                {currentScreen === 'Depósitos' && <Deposit />}
+                {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
+                {currentScreen === 'Planos' && <Plans />}
+                {currentScreen === 'Transações' && <Transactions></Transactions>}
+              </main>
+            </DashMain>
+
+          </DashboardContainer>
+      }
     </>
   )
 }

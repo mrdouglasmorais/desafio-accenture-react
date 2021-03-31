@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { FiLogOut, FiAlignRight } from 'react-icons/fi'
-import gamaIcon from '../../assets/svgs/gama-icon.svg'
+import nowBankIcon from '../../assets/svgs/nowbank-icon.svg'
 import CardMenu from '../../components/Dashboard/CardMenu'
 import CardMenuMobile from '../../components/Dashboard/CardMenuMobile'
 import Deposit from '../../components/Dashboard/Deposit'
@@ -14,7 +14,10 @@ import { ApplicationStore } from '../../store'
 import { change_screen } from '../../store/dashboard/actions'
 import { Screen } from '../../store/dashboard/types'
 import ExitModal from '../../components/Dashboard/ExitModal'
-import { DashboardContainer,
+import { DashboardContainerMobile,
+  DashMainMobile,
+  DashNavigationMobile,
+  DashboardContainer,
   DashMain,
   DashNavigation
 } from './styles'
@@ -37,7 +40,7 @@ const Dashboard: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log('is Mobile?', isMobile)
+    console.log('isMobile ?', isMobile)
     window.addEventListener('resize', handleWindowSize)
     width < 768
       ? setIsMobile(true)
@@ -72,13 +75,6 @@ const Dashboard: React.FC = () => {
   //       {
   //         modalIsOpen && ( <div onClick={setModal}>
 
-  //           <div style={{border: '2px solid red'}}>
-  //             <CardMenuMobile title = 'Depósitos' func={changeComponent} />
-  //             <CardMenuMobile title = 'Planos' func={changeComponent} />
-  //             <CardMenuMobile title = 'Pagamentos' func={changeComponent}  />
-  //             <CardMenuMobile title = 'Transações' func={changeComponent} />
-  //           </div>
-
   //           <div onClick={ () => {
   //             setIsExiting(true)
   //             setIsOpen(false)
@@ -99,30 +95,65 @@ const Dashboard: React.FC = () => {
     <>
       { isExiting && <ExitModal isMobile={isMobile} setResponse={ handleLogOut } /> }
 
-      <DashboardContainer className={ isMobile ? 'is-mobile' : 'is-desktop'}>
-        <DashMain className='dash-main' style={ isMobile ? {order: 1} : {order: 2} }>
-          <main style={{border: '2px solid green'}}>
-            {/* Render component by currentScreen */}
-            {currentScreen === 'Depósitos' && <Deposit />}
-            {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
-            {currentScreen === 'Planos' && <Plans />}
-            {currentScreen === 'Transações' && <Transactions></Transactions>}
-          </main>
-        </DashMain>
+      {
+        isMobile
+        ?
+          <DashboardContainerMobile>
 
-        <DashNavigation className='dash-navigation' style={ isMobile ? {order: 2} : {order: 1}}>
-          <nav>
-              <CardMenu title='Depósitos' onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
-              <CardMenu title='Planos' onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
-              <CardMenu title='Pagamentos' onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
-              <CardMenu title='Transações' onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
+            <DashMainMobile>
+              <main style={{border: '2px solid green'}}>
+                {/* Render component by currentScreen */}
+                {currentScreen === 'Depósitos' && <Deposit />}
+                {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
+                {currentScreen === 'Planos' && <Plans />}
+                {currentScreen === 'Transações' && <Transactions></Transactions>}
+              </main>
+            </DashMainMobile>
 
-              <button onClick={ () => setIsExiting(true) } >
-                <FiLogOut color="#fff" size={ 20 } />
-              </button>
-          </nav>
-        </DashNavigation>
-      </DashboardContainer>
+            <DashNavigationMobile>
+              <nav>
+                  <CardMenu isMobile={isMobile} title='Depósitos' onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
+                  <CardMenu isMobile={isMobile} title='Planos' onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
+                  <CardMenu isMobile={isMobile} title='Pagamentos' onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
+                  <CardMenu isMobile={isMobile} title='Transações' onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
+
+                  <button onClick={ () => setIsExiting(true) } >
+                    <FiLogOut color="#fff" size={ 20 } />
+                  </button>
+              </nav>
+            </DashNavigationMobile>
+
+          </DashboardContainerMobile>
+        :
+          <DashboardContainer>
+
+            <DashNavigation>
+              <div className="top">
+                <img className="logo" style={{ marginLeft: '1rem', width: '125px', height: '125px'}} src={nowBankIcon} alt="NowBank icon"/>
+                <button onClick={ () => setIsExiting(true) } >
+                  <FiLogOut color="#fff" size={ 20 } />
+                </button>
+              </div>
+              <nav className="bottom">
+                  <CardMenu isMobile={isMobile} title='Depósitos' onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
+                  <CardMenu isMobile={isMobile} title='Planos' onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
+                  <CardMenu isMobile={isMobile} title='Pagamentos' onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
+                  <CardMenu isMobile={isMobile} title='Transações' onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
+              </nav>
+            </DashNavigation>
+
+            <DashMain>
+              <main style={{border: '2px solid green'}}>
+                {/* Render component by currentScreen */}
+                {currentScreen === 'Depósitos' && <Deposit />}
+                {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
+                {currentScreen === 'Planos' && <Plans />}
+                {currentScreen === 'Transações' && <Transactions></Transactions>}
+              </main>
+            </DashMain>
+
+          </DashboardContainer>
+      }
     </>
   )
 }

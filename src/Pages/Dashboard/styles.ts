@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
-export const DashboardContainer = styled.div`
+export const DashboardContainerMobile = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   background: #7cc5ea;
 `
 
-export const DashMain = styled.div`
+export const DashMainMobile = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 3rem;
@@ -15,7 +15,7 @@ export const DashMain = styled.div`
   overflow-y: auto;
 `
 
-export const DashNavigation = styled.div`
+export const DashNavigationMobile= styled.div`
   position: fixed;
   bottom: 0;
   background: #7cc5ea;
@@ -33,6 +33,44 @@ export const DashNavigation = styled.div`
     padding: 0.5rem;
     height: 100px;
     overflow: auto;
+    div {
+      padding: 1rem;
+    }
+    button {
+      height: 4rem;
+      background: transparent;
+      border: none;
+      padding: 0 0.5rem;
+    }
+  }
+`
+
+export const DashboardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
+
+export const DashMain = styled.div`
+  display: flex;
+  width: 100%;
+`
+
+export const DashNavigation = styled.div`
+  background: pink;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .bottom {
+    display: flex;
+    background: green;
+    justify-content: space-evenly;
+    flex-direction: row;
     div {
       padding: 1rem;
     }

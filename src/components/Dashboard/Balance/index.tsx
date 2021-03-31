@@ -6,6 +6,7 @@ import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { ApplicationStore } from '../../../store'
 import { useSelector, useDispatch } from 'react-redux'
 import { hide_dashboard_data } from '../../../store/dashboard/actions'
+import { IdentificaUser, CardConta } from './styles'
 
 interface Total {
   banco: number,
@@ -72,16 +73,17 @@ const Balance: React.FC<AccountProps> = (props) => {
 
   return (
     <>
-      <div style={{border: 'solid 2px blue'}}>
-        <div>
+      <div>
+        <IdentificaUser>
           <p>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</p>
           <div>
             {!hide ? <FiEye size={35} onClick={() => hideOrShowInformations()} /> : <FiEyeOff size={35} onClick={() => hideOrShowInformations()} />}
           </div>
-        </div>
+        </IdentificaUser>
       </div>
       <div>
-        <div>
+
+        <CardConta>
           <div className='title'>
             <img src={currentIcon} alt="current icon" />
             <p>Conta</p>
@@ -92,9 +94,9 @@ const Balance: React.FC<AccountProps> = (props) => {
             <p>Transações</p>
             <h3 className={hide ? 'hide' : ''} title={totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           </div>
+        </CardConta>
 
-        </div>
-        <div>
+        <CardConta>
           {/*  */}
           <div className='title'>
             <img src={creditIcon} alt="current icon" />
@@ -107,7 +109,7 @@ const Balance: React.FC<AccountProps> = (props) => {
             <h3 className={hide ? 'hide' : ''} title={totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
             }>{totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           </div>
-        </div>
+        </CardConta>
       </div>
     </>
 

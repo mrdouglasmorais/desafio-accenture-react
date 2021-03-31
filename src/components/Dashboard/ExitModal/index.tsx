@@ -1,7 +1,6 @@
 import React, { HTMLAttributes } from 'react'
 
-import { ExitContainer } from './styles'
-
+import { ExitContainer, CardExit } from './styles'
 
 interface ExitModalProps extends HTMLAttributes<HTMLDivElement> {
     setResponse: (accepted: boolean) => void;
@@ -11,14 +10,14 @@ interface ExitModalProps extends HTMLAttributes<HTMLDivElement> {
 const ExitModal: React.FC<ExitModalProps> = ({ setResponse, isMobile, ...props }) => {
     return (
         <ExitContainer className={ isMobile ? 'is-mobile' : 'is-desktop'} {...props} >
-            <div>
+            <CardExit>
                 <h1>Tem certeza que deseja sair?</h1>
 
                 <div>
                     <button onClick={() => setResponse(false)} >Cancelar</button>
                     <button onClick={() => setResponse(true)}  >Tenho</button>
                 </div>
-            </div>
+            </CardExit>
         </ExitContainer>
     )
 }

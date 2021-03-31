@@ -30,11 +30,11 @@ export const DashNavigationMobile= styled.div`
     flex-wrap: nowrap;
     align-content: center;
     justify-content: space-between;
-    padding: 0.5rem;
-    height: 100px;
+    padding: 0.2rem;
+    height: 90px;
     overflow: auto;
     div {
-      padding: 1rem;
+      padding: 0.2rem;
     }
     button {
       height: 4rem;
@@ -57,7 +57,6 @@ export const DashMain = styled.div`
 `
 
 export const DashNavigation = styled.div`
-  background: pink;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -68,7 +67,6 @@ export const DashNavigation = styled.div`
   }
   .bottom {
     display: flex;
-    background: green;
     justify-content: space-evenly;
     flex-direction: row;
     div {
@@ -76,7 +74,6 @@ export const DashNavigation = styled.div`
     }
     button {
       height: 4rem;
-      background: transparent;
       border: none;
       padding: 0 0.5rem;
     }

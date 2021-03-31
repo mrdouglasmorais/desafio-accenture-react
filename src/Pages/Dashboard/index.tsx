@@ -1,9 +1,8 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { FiLogOut, FiAlignRight } from 'react-icons/fi'
-import nowBankIcon from '../../assets/svgs/nowbank-icon.svg'
+import logoNow from '../../assets/logonow.png'
 import CardMenu from '../../components/Dashboard/CardMenu'
-import CardMenuMobile from '../../components/Dashboard/CardMenuMobile'
 import Deposit from '../../components/Dashboard/Deposit'
 import Payments from '../../components/Dashboard/Payments'
 import Plans from '../../components/Dashboard/Plans'
@@ -22,6 +21,10 @@ import { DashboardContainerMobile,
   DashNavigation
 } from './styles'
 
+import {
+  BtnContainerMobile, BtnIconMobile, LabelMobile
+} from '../../styles/DashBoardButtons'
+
 const Dashboard: React.FC = () => {
   const history = useHistory()
   const dispatch = useDispatch()
@@ -31,10 +34,8 @@ const Dashboard: React.FC = () => {
   const [ modalIsOpen, setIsOpen ] = useState(false)
   const [ isExiting, setIsExiting ] = useState(false)
   const [ width, setWidth ] = useState<number>(window.innerWidth)
-  const [ isMobile, setIsMobile] = useState(false)
+  const [ isMobile, setIsMobile ] = useState(false)
 
-
-  // Set Width
   const handleWindowSize = () => {
     setWidth(window.innerWidth)
   }
@@ -101,7 +102,7 @@ const Dashboard: React.FC = () => {
           <DashboardContainerMobile>
 
             <DashMainMobile>
-              <main style={{border: '2px solid green'}}>
+              <main>
                 {/* Render component by currentScreen */}
                 {currentScreen === 'Depósitos' && <Deposit />}
                 {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
@@ -117,9 +118,13 @@ const Dashboard: React.FC = () => {
                   <CardMenu isMobile={isMobile} title='Pagamentos' onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
                   <CardMenu isMobile={isMobile} title='Transações' onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
 
-                  <button onClick={ () => setIsExiting(true) } >
-                    <FiLogOut color="#fff" size={ 20 } />
-                  </button>
+                  <BtnContainerMobile onClick={ () => setIsExiting(true) }>
+                      <BtnIconMobile className="material-icons icon">
+                          logout
+                      </BtnIconMobile>
+                      <LabelMobile>Sair</LabelMobile>
+                  </BtnContainerMobile>
+
               </nav>
             </DashNavigationMobile>
 
@@ -129,7 +134,7 @@ const Dashboard: React.FC = () => {
 
             <DashNavigation>
               <div className="top">
-                <img className="logo" style={{ marginLeft: '1rem', width: '125px', height: '125px'}} src={nowBankIcon} alt="NowBank icon"/>
+                <img className="logo" style={{ margin: '0.5rem 0 0.5rem 4rem', width: '15%' }} src={logoNow} alt="NowBank icon"/>
                 <button onClick={ () => setIsExiting(true) } >
                   <FiLogOut color="#fff" size={ 20 } />
                 </button>
@@ -143,7 +148,7 @@ const Dashboard: React.FC = () => {
             </DashNavigation>
 
             <DashMain>
-              <main style={{border: '2px solid green'}}>
+              <main>
                 {/* Render component by currentScreen */}
                 {currentScreen === 'Depósitos' && <Deposit />}
                 {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}

@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react'
 import currentIcon from '../../../assets/svgs/current-icon.svg'
 import creditIcon from '../../../assets/svgs/credit-card-icon.svg'
 import { Conta } from '../../../types/dash-board'
-import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { ApplicationStore } from '../../../store'
 import { useSelector, useDispatch } from 'react-redux'
 import { hide_dashboard_data } from '../../../store/dashboard/actions'
-import { IdentificaUser, CardConta } from './styles'
+import { BalanceContainer, IdentificaUser, CardDashboard } from './styles'
 
 interface Total {
   banco: number,
@@ -72,18 +71,22 @@ const Balance: React.FC<AccountProps> = (props) => {
   }
 
   return (
-    <>
-      <div>
+    <BalanceContainer className="balance-container">
         <IdentificaUser>
           <p>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</p>
           <div>
-            {!hide ? <FiEye size={35} onClick={() => hideOrShowInformations()} /> : <FiEyeOff size={35} onClick={() => hideOrShowInformations()} />}
+            { !hide
+              ? <span className="material-icons" onClick={() => hideOrShowInformations()}>
+                  visibility
+                </span>
+              : <span className="material-icons" onClick={() => hideOrShowInformations()}>
+                  visibility_off
+                </span>
+            }
           </div>
         </IdentificaUser>
-      </div>
-      <div>
 
-        <CardConta>
+        <CardDashboard className="nachos">
           <div className='title'>
             <img src={currentIcon} alt="current icon" />
             <p>Conta</p>
@@ -94,9 +97,9 @@ const Balance: React.FC<AccountProps> = (props) => {
             <p>Transações</p>
             <h3 className={hide ? 'hide' : ''} title={totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           </div>
-        </CardConta>
+        </CardDashboard>
 
-        <CardConta>
+        <CardDashboard>
           {/*  */}
           <div className='title'>
             <img src={creditIcon} alt="current icon" />
@@ -109,10 +112,8 @@ const Balance: React.FC<AccountProps> = (props) => {
             <h3 className={hide ? 'hide' : ''} title={totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
             }>{totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           </div>
-        </CardConta>
-      </div>
-    </>
-
+        </CardDashboard>
+    </BalanceContainer>
   )
 }
 

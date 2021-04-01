@@ -9,6 +9,8 @@ import { ApplicationStore } from '../../../store'
 import Loader from '../../Loader'
 import { set_transaction_data } from '../../../store/dashboard/actions'
 
+import { BalanceExtractContainer, ContainerFilter } from './style'
+
 const Transactions: React.FC = () => {
 
   const [ contas, setContas ] = useState<Contas>()
@@ -79,20 +81,20 @@ const Transactions: React.FC = () => {
   }
 
   if ( loaded )return (
-    <div>
+    <BalanceExtractContainer>
       {/* Componente para página principal */}
 
       <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito}/>
 
-      <div>
-        <p>Escolhe a quantidade de <strong>meses</strong> para o filtro: </p>
+      <ContainerFilter>
+        <p>Meses para filtrar: </p>
         <input  type="number" min={1} max={12} value={referenceDate} onChange={updateReference}/>
-      </div>
+      </ContainerFilter>
 
       <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito}/>
       {/* <FiArrowLeft onClick={() => {props.func('')}}/> */}
 
-    </div>
+    </BalanceExtractContainer>
   )
   else return <Loader style={{ border: '4px solid #f0f0f0' }} />
 

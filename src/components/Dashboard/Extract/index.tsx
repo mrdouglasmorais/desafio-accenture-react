@@ -3,6 +3,8 @@ import currentIcon from '../../../assets/svgs/current-icon.svg'
 import creditCardsIcon from '../../../assets/svgs/credit-cards-icon.svg'
 import { Conta } from '../../../types/dash-board'
 
+import { CardContainer, CardDashboard } from './styles'
+
 interface ExtractData {
     contaBanco?: Conta,
     contaCredito?: Conta,
@@ -43,8 +45,8 @@ const Extract: React.FC<ExtractData> = (props) => {
     }
 
     return (
-        <>
-            <div>
+        <CardContainer>
+            <CardDashboard className="scroll">
                 <div className="title-container">
                     <img src={currentIcon} alt="current icon" />
                     <p>Últimos lançamentos</p>
@@ -63,8 +65,8 @@ const Extract: React.FC<ExtractData> = (props) => {
                         </div>
                     )
                 })}
-            </div>
-        </>
+            </CardDashboard>
+        </CardContainer>
     )
 }
 

@@ -4,7 +4,7 @@ export const DashboardContainerMobile = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: #7cc5ea;
+  margin: 0 0 3rem 0;
 `
 
 export const DashMainMobile = styled.div`

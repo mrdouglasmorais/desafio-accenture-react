@@ -81,10 +81,10 @@ const Dashboard: React.FC = () => {
             <DashMainMobile>
               <main>
                 {/* Render component by currentScreen */}
+                {currentScreen === 'Transações' && <Transactions></Transactions>}
                 {currentScreen === 'Depósitos' && <Deposit />}
                 {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
                 {currentScreen === 'Planos' && <Plans />}
-                {currentScreen === 'Transações' && <Transactions></Transactions>}
               </main>
             </DashMainMobile>
 
@@ -92,20 +92,20 @@ const Dashboard: React.FC = () => {
               <nav>
                 <CardMenu isMobile={isMobile}
                   backgroundColor='#7cc5ea'
+                  title='Transações'
+                  onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
+                <CardMenu isMobile={isMobile}
+                  backgroundColor='#7cc5ea'
                   title='Depósitos'
                   onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
                 <CardMenu isMobile={isMobile}
                   backgroundColor='#7cc5ea'
-                  title='Planos'
-                  onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
-                <CardMenu isMobile={isMobile}
-                  backgroundColor='#7cc5ea'
                   title='Pagamentos'
                   onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
-                <CardMenu isMobile={isMobile}
+                  <CardMenu isMobile={isMobile}
                   backgroundColor='#7cc5ea'
-                  title='Transações'
-                  onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
+                  title='Planos'
+                  onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
 
                 <BtnContainerMobile backgroundColor='#7cc5ea' onClick={ () => setIsExiting(true) }>
                     <BtnIconMobile className="material-icons icon">
@@ -144,31 +144,31 @@ const Dashboard: React.FC = () => {
 
               <nav className="bottom">
                 <CardMenu isMobile={isMobile}
+                  backgroundColor='#7cc5ea'
+                  title='Transações'
+                  onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
+                <CardMenu isMobile={isMobile}
                   backgroundColor='#78DA78'
                   title='Depósitos'
                   onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
-                <CardMenu isMobile={isMobile}
-                  backgroundColor='#A2ABFE'
-                  title='Planos'
-                  onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
                 <CardMenu isMobile={isMobile}
                   backgroundColor='#FDBC7E'
                   title='Pagamentos'
                   onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
                 <CardMenu isMobile={isMobile}
-                  backgroundColor='#7cc5ea'
-                  title='Transações'
-                  onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
+                  backgroundColor='#A2ABFE'
+                  title='Planos'
+                  onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
               </nav>
             </DashNavigation>
 
             <DashMain>
               <main>
                 {/* Render component by currentScreen */}
+                {currentScreen === 'Transações' && <Transactions></Transactions>}
                 {currentScreen === 'Depósitos' && <Deposit />}
                 {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
                 {currentScreen === 'Planos' && <Plans />}
-                {currentScreen === 'Transações' && <Transactions></Transactions>}
               </main>
             </DashMain>
 

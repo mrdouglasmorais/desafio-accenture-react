@@ -15,7 +15,7 @@ export const IdentificaUser = styled.div`
 
 export const CardContainer = styled.div`
     display: flex;
-    width: 100%;
+    width: 90%;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
 `

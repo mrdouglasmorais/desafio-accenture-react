@@ -38,7 +38,6 @@ export const CardContainer = styled.div`
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 `
 
-
 export const CardDashboard = styled.div`
     margin: 1rem 0;
     padding: 0.5rem;
@@ -56,10 +55,17 @@ export const CardDashboard = styled.div`
             margin: 0.5rem 0 0 0.75rem;
         }
     }
-    p{
+    p  {
         margin-left: 1em;
     }
-    h3{
+    h3  {
         margin-left: 1em;
+    }
+    .hide {
+        background: gray;
+        color: gray;
+        border-radius: 5px;
+        width: 80%;
+        transition: all 1s;
     }
 `

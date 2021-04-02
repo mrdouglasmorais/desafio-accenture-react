@@ -54,7 +54,7 @@ const Extract: React.FC<ExtractData> = (props) => {
                 {allLaunchs.length === 0 && 'Nenhum lancamento'}
                 {allLaunchs && allLaunchs.map((launch, index) => {
                     return (
-                        <div key={index}>
+                        <div className="receipts credit-cards" key={index}>
                             <img src={creditCardsIcon} alt="credit cards icon" />
                             <div className="text-items">
                                 <strong>{typePlans(launch.planoConta.tipoMovimento)}</strong>

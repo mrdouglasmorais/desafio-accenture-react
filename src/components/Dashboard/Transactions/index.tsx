@@ -3,6 +3,7 @@ import React, { useState, useEffect, ChangeEvent, useCallback } from 'react'
 import { Contas } from '../../../types/dash-board'
 import Balance from '../Balance'
 import Extract from '../Extract'
+import Chart from '../Charts'
 import api from '../../../services/api'
 import { useDispatch, useSelector } from 'react-redux'
 import { ApplicationStore } from '../../../store'
@@ -13,9 +14,21 @@ import { BalanceExtractContainer, ContainerFilter } from './style'
 
 const Transactions: React.FC = () => {
 
+  const data = [
+    {
+      name: "Conta Banco",
+      value: 1500
+    },
+    {
+      name: "Conta crédito",
+      value: 11000
+    }
+  ]
+
   const [ contas, setContas ] = useState<Contas>()
   const [ loaded, setLoaded ] = useState(true)
   const [ referenceDate, setReferenceDate ] = useState(1)
+  // const [ chartData, setChartData ] = useState()
 
   const user = useSelector( (state: ApplicationStore) => state.user )
   const dashboard = useSelector(( state: ApplicationStore ) => state.dashboard)
@@ -45,6 +58,9 @@ const Transactions: React.FC = () => {
   useEffect( ()=> {
     if ( dashboard.transactions_data ) {
       setContas(dashboard.transactions_data.accounts)
+      // if (dashboard.transactions_data.contaBanco.lancamentos) {
+
+      // }
 
       return
     }
@@ -93,6 +109,8 @@ const Transactions: React.FC = () => {
 
       <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito}/>
       {/* <FiArrowLeft onClick={() => {props.func('')}}/> */}
+
+      <Chart data={data} />
 
     </BalanceExtractContainer>
   )

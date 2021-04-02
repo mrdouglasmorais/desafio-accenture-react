@@ -12,7 +12,9 @@ import { ApplicationStore } from '../../store'
 import { change_screen } from '../../store/dashboard/actions'
 import { Screen } from '../../store/dashboard/types'
 import ExitModal from '../../components/Dashboard/ExitModal'
-import { DashboardContainerMobile,
+import { IoMdPower } from "react-icons/io"
+import {
+  DashboardContainerMobile,
   DashMainMobile,
   DashNavigationMobile,
   DashboardContainer,
@@ -21,7 +23,7 @@ import { DashboardContainerMobile,
 } from './styles'
 
 import {
-  BtnContainerMobile, BtnIconMobile, LabelMobile,  ExitBtnContainer
+  BtnContainerMobile, BtnIconMobile, LabelMobile, ExitBtnContainer
 } from '../../styles/DashBoardButtons'
 
 const Dashboard: React.FC = () => {
@@ -31,10 +33,10 @@ const Dashboard: React.FC = () => {
 
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen)
 
-  const [ user, setUser ] = useState('')
-  const [ isExiting, setIsExiting ] = useState(false)
-  const [ width, setWidth ] = useState<number>(window.innerWidth)
-  const [ isMobile, setIsMobile ] = useState(false)
+  const [user, setUser] = useState('')
+  const [isExiting, setIsExiting] = useState(false)
+  const [width, setWidth] = useState<number>(window.innerWidth)
+  const [isMobile, setIsMobile] = useState(false)
 
   const handleWindowSize = () => {
     setWidth(window.innerWidth)
@@ -50,32 +52,32 @@ const Dashboard: React.FC = () => {
       ? setIsMobile(true)
       : setIsMobile(false)
     return () => {
-        window.removeEventListener('resize', handleWindowSize)
+      window.removeEventListener('resize', handleWindowSize)
     }
   }, [])
   //Setting data accounts;
   const changeComponent = useCallback((title: Screen) => {
-    dispatch( change_screen(title) )
+    dispatch(change_screen(title))
   }, [dispatch])
 
   const handleLogOut = useCallback((accepted: boolean) => {
-    if ( accepted ) {
+    if (accepted) {
       dispatch(remove_user())
 
       history.push('/')
     } else {
       setIsExiting(false)
     }
-  }, [ dispatch, history ])
+  }, [dispatch, history])
 
 
   return (
     <>
-      { isExiting && <ExitModal isMobile={isMobile} setResponse={ handleLogOut } /> }
+      { isExiting && <ExitModal isMobile={isMobile} setResponse={handleLogOut} />}
 
       {
         isMobile
-        ?
+          ?
           <DashboardContainerMobile>
 
             <DashMainMobile>
@@ -88,7 +90,7 @@ const Dashboard: React.FC = () => {
               </main>
             </DashMainMobile>
 
-            <DashNavigationMobile>
+            <DashNavigationMobile> {/** Não estou conseguindo identificar esse campo */}
               <nav>
                 <CardMenu isMobile={isMobile}
                   backgroundColor='#7cc5ea'
@@ -102,65 +104,62 @@ const Dashboard: React.FC = () => {
                   backgroundColor='#7cc5ea'
                   title='Pagamentos'
                   onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
-                  <CardMenu isMobile={isMobile}
+                <CardMenu isMobile={isMobile}
                   backgroundColor='#7cc5ea'
                   title='Planos'
                   onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
 
-                <BtnContainerMobile backgroundColor='#7cc5ea' onClick={ () => setIsExiting(true) }>
-                    <BtnIconMobile className="material-icons icon">
-                      logout
+                <BtnContainerMobile backgroundColor='#7cc5ea' onClick={() => setIsExiting(true)}>
+                  <BtnIconMobile className="material-icons icon">
+                    logout
                     </BtnIconMobile>
-                    <LabelMobile>Sair</LabelMobile>
+                  <LabelMobile>Sair</LabelMobile>
                 </BtnContainerMobile>
               </nav>
             </DashNavigationMobile>
 
           </DashboardContainerMobile>
-        :
+          :
           <DashboardContainer>
 
-            <DashNavigation>
-              <div className="top">
-                <img className="logo" style={{ margin: '0.5rem 0 0.5rem 4rem', width: '15%' }} src={logoNow} alt="NowBank icon"/>
-                <ExitBtnContainer onClick={ () => setIsExiting(true) } >
-                  <div className="exit-button-top">
-                    <span className="material-icons">
-                      account_circle
-                    </span>
-                    <span>{user.split(' ')[0]}</span>
-                    <span className="material-icons">
-                      expand_less
-                    </span>
-                  </div>
-                  <div className="exit-button-bottom">
-                    <span className="material-icons">
-                      logout
-                    </span>
-                    <span>Sair</span>
-                  </div>
-                </ExitBtnContainer>
-              </div>
 
-              <nav className="bottom">
-                <CardMenu isMobile={isMobile}
-                  backgroundColor='#7cc5ea'
-                  title='Transações'
-                  onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
-                <CardMenu isMobile={isMobile}
-                  backgroundColor='#78DA78'
-                  title='Depósitos'
-                  onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
-                <CardMenu isMobile={isMobile}
-                  backgroundColor='#FDBC7E'
-                  title='Pagamentos'
-                  onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
-                <CardMenu isMobile={isMobile}
-                  backgroundColor='#A2ABFE'
-                  title='Planos'
-                  onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
+            <DashNavigation>
+              <nav>
+                <ul>
+                  <img style={{ width: '30%' }} src={logoNow} alt="NowBank icon" />
+                </ul>
+                <ul>
+                  <li>
+                    {user.split(' ')[0]}
+                  </li>
+                  <li>
+                    <a onClick={() => setIsExiting(true)}><IoMdPower /></a>
+                  </li>
+                </ul>
               </nav>
+
+
+
+              
             </DashNavigation>
+            <nav className="bottom">
+              <CardMenu isMobile={isMobile}
+                backgroundColor='#7cc5ea'
+                title='Transações'
+                onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
+              <CardMenu isMobile={isMobile}
+                backgroundColor='#78DA78'
+                title='Depósitos'
+                onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
+              <CardMenu isMobile={isMobile}
+                backgroundColor='#FDBC7E'
+                title='Pagamentos'
+                onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
+              <CardMenu isMobile={isMobile}
+                backgroundColor='#A2ABFE'
+                title='Planos'
+                onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
+            </nav>
 
             <DashMain>
               <main>

@@ -12,14 +12,21 @@ import { ApplicationStore } from '../../store'
 import { change_screen } from '../../store/dashboard/actions'
 import { Screen } from '../../store/dashboard/types'
 import ExitModal from '../../components/Dashboard/ExitModal'
-import { IoMdPower } from "react-icons/io"
+import { IoMdPower, IoMdCash } from "react-icons/io"
+import { GiBanknote } from "react-icons/gi"
+import { FaPiggyBank } from "react-icons/fa"
+import { RiBankCardFill } from "react-icons/ri"
+import { AiOutlineBank } from "react-icons/ai"
+
 import {
   DashboardContainerMobile,
   DashMainMobile,
   DashNavigationMobile,
   DashboardContainer,
   DashMain,
-  DashNavigation
+  DashNavigation,
+  CardMenuWeb,
+  CardDesc
 } from './styles'
 
 import {
@@ -138,11 +145,39 @@ const Dashboard: React.FC = () => {
                 </ul>
               </nav>
 
-
-
-              
             </DashNavigation>
-            <nav className="bottom">
+            <CardMenuWeb>
+              <CardDesc>
+ 
+                <header style={{background:'rgba(5, 47, 236, 0.952)'}}>Transações</header>
+                <section style={{background:'rgba(1, 46, 245, 0.534)'}}>
+                <span><AiOutlineBank/> </span>
+                </section>
+              </CardDesc>
+              <CardDesc>
+                <header style={{background:'rgba(61, 201, 5, 0.952)'}}>Depósito</header>
+                <section style={{background:'rgba(61, 201, 5, 0.534)'}}>
+                <span><GiBanknote/> <h3>R$: 20,00</h3></span>
+                </section>
+              </CardDesc>
+              <CardDesc>
+                <header style={{background:'rgba(243, 161, 8, 0.952)'}}>Pagamentos</header>
+                <section style={{background:'rgba(243, 161, 8, 0.534)'}}>
+                <span><RiBankCardFill/> <h3>R$: 50,00</h3></span>
+                </section>
+              </CardDesc>
+              <CardDesc>
+                <header style={{background:'rgba(112, 0, 216, 0.952)'}}>Planos</header>
+                <section style={{background:'rgba(112, 0, 216, 0.534)'}}>
+                <span><FaPiggyBank/> <h3>10</h3></span>
+                </section>
+              </CardDesc>
+
+
+            </CardMenuWeb>
+          
+         {/**
+          *    <nav className="bottom">
               <CardMenu isMobile={isMobile}
                 backgroundColor='#7cc5ea'
                 title='Transações'
@@ -160,6 +195,7 @@ const Dashboard: React.FC = () => {
                 title='Planos'
                 onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
             </nav>
+          */}
 
             <DashMain>
               <main>

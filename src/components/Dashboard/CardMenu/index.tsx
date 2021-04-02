@@ -34,7 +34,7 @@ const CardMenu: React.FC<ComponentProp> = ( { selected, isMobile, backgroundColo
                         <BtnIconMobile className="material-icons">
                             { getIcon(props.title) }
                         </BtnIconMobile>
-                        <LabelMobile>{props.title}</LabelMobile>
+                        <LabelMobile>{props.title} </LabelMobile>
                     </BtnContainerMobile>
                 :
                     <BtnContainer backgroundColor={backgroundColor} { ...props } className={selected ? 'card-selected' : ''}>

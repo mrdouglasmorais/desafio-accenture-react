@@ -89,25 +89,76 @@ export const DashNavigation = styled.div` //-----------
         }
     }
   }
+`
+export const CardMenuWeb = styled.div`
+  max-width: 1320px;
+  display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
+ 
+
+`
+export const CardDesc = styled.div`
+
+    width: 17rem;
+    height: 9rem;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    background: #fff;
+  
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    header{
+
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding: 10px;
+ 
+
+    display: flex;
+    justify-content: flex-end;
+   color:white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 3px 3px 0 0 ;
+    }&:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+section{
+  flex: 1 1 auto;
+  height: 6.1rem;
+  border-radius: 0 0 3px 3px;
+    min-height: 1px;
+    padding: 1.25rem;
+    a{
+          color:#67676b;
+          font-size: 1.5rem;
+    }
+
+    span{
+   
+        display:flex;
+        justify-content:center;
+
+        h3{
+          color:#67676b;
+          font-size: 1.5rem;
+          position: absolute;
+  z-index: 0;
   
 
-  /** 
-  .top {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
-  .bottom {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-    div {
-      padding: 1rem;
+
+        }
+       
+      svg{
+        opacity: 0.5;
+        font-size: 8em;
+        transform: rotate(-10deg);
+        margin-top: -50px;
+        color:white;
+      }
     }
-    button {
-      height: 4rem;
-      border: none;
-      padding: 0 0.5rem;
-  }
-    }*/
-`
+}
+    `

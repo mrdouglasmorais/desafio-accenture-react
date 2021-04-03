@@ -5,7 +5,16 @@ import { Conta } from '../../../types/dash-board'
 import { ApplicationStore } from '../../../store'
 import { useSelector, useDispatch } from 'react-redux'
 import { hide_dashboard_data } from '../../../store/dashboard/actions'
-import { BalanceContainer, IdentificaUser, CardDashboard, CardGrupoMov, CardDashboardConta } from './styles'
+import {
+  BalanceContainer,
+  IdentificaUser,
+  CardDashboard,
+  CardGrupoMov,
+  CardDashboardConta,
+  CardDashboardCred,
+  CardMenuWeb,
+  CardDesc
+} from './styles'
 
 interface Total {
   banco: number,
@@ -70,50 +79,77 @@ const Balance: React.FC<AccountProps> = (props) => {
     }
   }
 
-  return (
+  return (<>
     <BalanceContainer >
-        <IdentificaUser>
-          <p>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</p>
-          <div>
-            { !hide
-              ? <span className="material-icons" onClick={() => hideOrShowInformations()}>
-                  visibility
+      <IdentificaUser>
+        <p>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</p>
+        <div>
+          {!hide
+            ? <span className="material-icons" onClick={() => hideOrShowInformations()}>
+              visibility
                 </span>
-              : <span className="material-icons" onClick={() => hideOrShowInformations()}>
-                  visibility_off
-                </span> 
-            }
-          </div>
-          
-        </IdentificaUser>
+            : <span className="material-icons" onClick={() => hideOrShowInformations()}>
+              visibility_off
+                </span>
+          }
+        </div>
 
-        <CardGrupoMov>
-        <CardDashboard>
-        <CardDashboardConta>
-        <header>
-            <p><img src={currentIcon} alt="current icon" />Conta</p> </header>
-            
-          <div className='title'>
-            
+      </IdentificaUser>
+    </BalanceContainer>
+
+
+    <CardMenuWeb>
+      <CardDesc>
+
+        <header ><img src={currentIcon} alt="current icon" /><p>Conta</p></header>
+        <section >
+        <p>Saldo disponivel</p>
+          <h3 className={`value acccount ${hide ? 'hide' : ''}`} title={contaBanco?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{contaBanco?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
+         
+         
+            <p>Transações</p>
+            <h3 className={hide ? 'hide' : ''} title={totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
+        
+        </section>
+      </CardDesc>
+
+      <CardDesc>
+        <header > <img src={creditIcon} alt="current icon" /><p>Conta Crédito</p></header>
+        <section >
+          <div>
+            <p>Limite Disponivel</p>
+            <h3 className={hide ? 'hide' : ''} title={totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+            }>{totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           </div>
+        </section>
+      </CardDesc>
+
+
+
+    </CardMenuWeb>
+
+    <CardGrupoMov>
+      <CardDashboard>
+
+        <CardDashboardConta>
+          <header>
+
+          </header>
           <p>Saldo disponivel</p>
           <h3 className={`value acccount ${hide ? 'hide' : ''}`} title={contaBanco?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{contaBanco?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           <div>
             <p>Transações</p>
             <h3 className={hide ? 'hide' : ''} title={totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           </div>
-         
-        </CardDashboardConta>
-         
-        
-        </CardDashboard>
 
-        <CardDashboard>
-          {/*  */}
-          <div className='title'>
-            <img src={creditIcon} alt="current icon" />
-            <p>Conta Crédito</p>
-          </div>
+        </CardDashboardConta>
+
+        <CardDashboardConta>
+
+          <header>
+
+          </header>
+
           <p>Fatura atual</p>
           <h3 className={`value credit ${hide ? 'hide' : ''}`} title={contaCredito?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{contaCredito?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           <div>
@@ -121,10 +157,12 @@ const Balance: React.FC<AccountProps> = (props) => {
             <h3 className={hide ? 'hide' : ''} title={totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
             }>{totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           </div>
-        </CardDashboard>
-        </CardGrupoMov>
+        </CardDashboardConta>
 
-    </BalanceContainer>
+      </CardDashboard>
+    </CardGrupoMov>
+  </>
+
   )
 }
 

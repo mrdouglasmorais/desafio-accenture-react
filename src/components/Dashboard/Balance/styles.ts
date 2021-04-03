@@ -37,11 +37,20 @@ export const CardContainer = styled.div`
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 `
+export const CardGrupoMov = styled.div`
+
+`
 
 export const CardDashboard = styled.div`
-   // margin: 1rem 0;
+  max-width: 1200px;
+  display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
+
+
+   /* margin: 1rem 0;
     padding: 0.5rem;
-   // width: 85%;
+    width: 85%;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: #1d385699 1px 1px 4px 1px;
@@ -67,11 +76,21 @@ export const CardDashboard = styled.div`
         border-radius: 5px;
         width: 80%;
         transition: all 1s;
-    }
+    }*/
 `
 
 //-----
 export const CardDashboardConta = styled.div`
+    width: 17rem;
+    height: 15rem;
+    background: #fff;
+  
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+
+
+
+
 
 header{
 
@@ -88,13 +107,13 @@ border-radius: 3px 3px 0 0 ;
 }&:first-child {
 border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
 }
-
+/*
    // margin: 1rem 0;
-    padding: 0.5rem;
+  //  padding: 0.5rem;
  
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: #1d385699 1px 1px 4px 1px;
+    // background-color: #f9f9f9;
+    // border-radius: 8px;
+    //box-shadow: #1d385699 1px 1px 4px 1px;
     img {
         margin-left: 0.7rem;
     }
@@ -117,11 +136,113 @@ border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
         border-radius: 5px;
         width: 80%;
         transition: all 1s;
-    }
+    }*/
 `
-//------
-export const CardGrupoMov = styled.div`
+
+
+export const CardDashboardCred = styled.div`
+    width: 17rem;
+    height: 15rem;
+    background: #fff;
+  
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+header{
+
+border-bottom: 1px solid rgba(0,0,0,.125);
+padding: 10px;
+
 
 display: flex;
-justify-content: center;
+justify-content: flex-end;
+color:black;
+font-weight: bold;
+font-size: 20px;
+border-radius: 3px 3px 0 0 ;
+}&:first-child {
+border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
 `
+//------
+export const CardMenuWeb = styled.div`
+  max-width: 1320px;
+  display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    justify-content:space-evenly;
+ 
+
+`
+export const CardDesc = styled.div`
+
+    width: 17rem;
+    height: 15rem;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    background: #fff;
+  
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    header{
+
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding: 10px;
+     display: flex;
+    justify-content: space-between;
+    align-items:center;
+    color:#67676b;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 3px 3px 0 0 ;
+    }
+    p{
+        color:#67676b;
+          font-size: 1.5rem;
+
+    }
+section{
+  flex: 1 1 auto;
+  height: 7.1rem;
+  border-radius: 0 0 3px 3px;
+    min-height: 1px;
+    padding: 1.25rem;
+    p{
+        color:#67676b;
+          font-size: 1rem;
+
+    }
+    h3{
+          color:#67676b;
+          font-size: 1.5rem;
+          display: flex;
+          justify-content: flex-end;
+    }
+
+    span{
+   
+        display:flex;
+        justify-content:center;
+
+        h3{
+          color:#67676b;
+          font-size: 1.5rem;
+          position: absolute;
+  z-index: 0;
+  
+
+
+        }
+       
+      svg{
+        opacity: 0.5;
+        font-size: 8em;
+        transform: rotate(-10deg);
+        margin-top: -50px;
+        color:white;
+      }
+    }
+}
+    `

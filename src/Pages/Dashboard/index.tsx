@@ -12,7 +12,7 @@ import { ApplicationStore } from '../../store'
 import { change_screen } from '../../store/dashboard/actions'
 import { Screen } from '../../store/dashboard/types'
 import ExitModal from '../../components/Dashboard/ExitModal'
-import { IoMdPower, IoMdCash } from "react-icons/io"
+import { IoMdPower} from "react-icons/io"
 import { GiBanknote } from "react-icons/gi"
 import { FaPiggyBank } from "react-icons/fa"
 import { RiBankCardFill } from "react-icons/ri"
@@ -200,6 +200,7 @@ const Dashboard: React.FC = () => {
             <DashMain>
               <main>
                 {/* Render component by currentScreen */}
+              
                 {currentScreen === 'Transações' && <Transactions></Transactions>}
                 {currentScreen === 'Depósitos' && <Deposit />}
                 {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}

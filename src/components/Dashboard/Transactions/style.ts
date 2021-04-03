@@ -36,10 +36,12 @@ export const MonthConatiner = styled.div`
 `
 
 export const BalanceExtractContainer = styled.div`
+
   width: 100vw;
-  display: flex;
-  flex-direction: column;
+  //display: flex;
+  //justify-content: center;
 `
+
 
 export const ContainerFilter = styled.div`
   display: flex;

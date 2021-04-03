@@ -5,7 +5,7 @@ import { Conta } from '../../../types/dash-board'
 import { ApplicationStore } from '../../../store'
 import { useSelector, useDispatch } from 'react-redux'
 import { hide_dashboard_data } from '../../../store/dashboard/actions'
-import { BalanceContainer, IdentificaUser, CardDashboard } from './styles'
+import { BalanceContainer, IdentificaUser, CardDashboard, CardGrupoMov, CardDashboardConta } from './styles'
 
 interface Total {
   banco: number,
@@ -71,7 +71,7 @@ const Balance: React.FC<AccountProps> = (props) => {
   }
 
   return (
-    <BalanceContainer className="balance-container">
+    <BalanceContainer >
         <IdentificaUser>
           <p>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</p>
           <div>
@@ -81,15 +81,20 @@ const Balance: React.FC<AccountProps> = (props) => {
                 </span>
               : <span className="material-icons" onClick={() => hideOrShowInformations()}>
                   visibility_off
-                </span>
+                </span> 
             }
           </div>
+          
         </IdentificaUser>
 
-        <CardDashboard className="nachos">
+        <CardGrupoMov>
+        <CardDashboard>
+        <CardDashboardConta>
+        <header>
+            <p><img src={currentIcon} alt="current icon" />Conta</p> </header>
+            
           <div className='title'>
-            <img src={currentIcon} alt="current icon" />
-            <p>Conta</p>
+            
           </div>
           <p>Saldo disponivel</p>
           <h3 className={`value acccount ${hide ? 'hide' : ''}`} title={contaBanco?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{contaBanco?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
@@ -97,6 +102,10 @@ const Balance: React.FC<AccountProps> = (props) => {
             <p>Transações</p>
             <h3 className={hide ? 'hide' : ''} title={totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           </div>
+         
+        </CardDashboardConta>
+         
+        
         </CardDashboard>
 
         <CardDashboard>
@@ -113,6 +122,8 @@ const Balance: React.FC<AccountProps> = (props) => {
             }>{totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
           </div>
         </CardDashboard>
+        </CardGrupoMov>
+
     </BalanceContainer>
   )
 }

@@ -10,7 +10,11 @@ import { ApplicationStore } from '../../../store'
 import Loader from '../../Loader'
 import { set_transaction_data } from '../../../store/dashboard/actions'
 
-import { BalanceExtractContainer, ContainerFilter } from './style'
+import { 
+  BalanceExtractContainer,
+  ContainerFilter
+
+} from './style'
 
 const Transactions: React.FC = () => {
 
@@ -25,17 +29,17 @@ const Transactions: React.FC = () => {
     }
   ]
 
-  const [ contas, setContas ] = useState<Contas>()
-  const [ loaded, setLoaded ] = useState(true)
-  const [ referenceDate, setReferenceDate ] = useState(1)
+  const [contas, setContas] = useState<Contas>()
+  const [loaded, setLoaded] = useState(true)
+  const [referenceDate, setReferenceDate] = useState(1)
   // const [ chartData, setChartData ] = useState()
 
-  const user = useSelector( (state: ApplicationStore) => state.user )
-  const dashboard = useSelector(( state: ApplicationStore ) => state.dashboard)
+  const user = useSelector((state: ApplicationStore) => state.user)
+  const dashboard = useSelector((state: ApplicationStore) => state.dashboard)
 
   const dispatch = useDispatch()
 
-  const formatDate = useCallback((date:string) => {
+  const formatDate = useCallback((date: string) => {
     setLoaded(false)
 
     const d = new Date(date)
@@ -43,20 +47,20 @@ const Transactions: React.FC = () => {
     const year = d.getFullYear()
 
     if (month.length < 2)
-        month = '0' + month
+      month = '0' + month
     if (day.length < 2)
-        day = '0' + day
+      day = '0' + day
 
     return [year, month, day].join('-')
   }, [])
 
   useEffect(() => {
-    if ( contas )
-      dispatch( set_transaction_data({ accounts: contas }) )
+    if (contas)
+      dispatch(set_transaction_data({ accounts: contas }))
   }, [dispatch, contas])
 
-  useEffect( ()=> {
-    if ( dashboard.transactions_data ) {
+  useEffect(() => {
+    if (dashboard.transactions_data) {
       setContas(dashboard.transactions_data.accounts)
       // if (dashboard.transactions_data.contaBanco.lancamentos) {
 
@@ -65,15 +69,15 @@ const Transactions: React.FC = () => {
       return
     }
 
-    const getDashboardValues = async() => {
+    const getDashboardValues = async () => {
       try {
         setLoaded(false)
 
         const date = new Date()
         const newD = new Date()
-        const newDate = new Date(date.setMonth(date.getMonth()-referenceDate))
-        const dateFormated = (newD.getFullYear() + "-" + ((newD.getMonth() + 1)) + "-" + (newD.getDate() ))
-        const newDateFormated = (newDate.getFullYear() + "-" + ((newDate.getMonth() + 1)) + "-" + (newDate.getDate() ))
+        const newDate = new Date(date.setMonth(date.getMonth() - referenceDate))
+        const dateFormated = (newD.getFullYear() + "-" + ((newD.getMonth() + 1)) + "-" + (newD.getDate()))
+        const newDateFormated = (newDate.getFullYear() + "-" + ((newDate.getMonth() + 1)) + "-" + (newDate.getDate()))
         const result = await api.get(`/dashboard?fim=${formatDate(dateFormated)}&inicio=${formatDate(newDateFormated)}&login=${user?.login}`, {
           headers: {
             Authorization: user?.token,
@@ -82,35 +86,41 @@ const Transactions: React.FC = () => {
         setContas(result.data)
         setLoaded(true)
 
-      }catch (err) {
+      } catch (err) {
         console.log(err)
       }
     }
 
     getDashboardValues()
-  }, [ referenceDate, user?.login, user?.token, formatDate, dashboard ])
+  }, [referenceDate, user?.login, user?.token, formatDate, dashboard])
 
-  const updateReference = (event:ChangeEvent<HTMLInputElement>) => {
+  const updateReference = (event: ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value)
     if (value > 0 && value <= 12)
       setReferenceDate(value)
   }
 
-  if ( loaded )return (
+  if (loaded) return (
     <BalanceExtractContainer>
       {/* Componente para página principal */}
+     
+        <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
 
-      <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito}/>
+    
+        <ContainerFilter>
+          <p>Meses para filtrar: </p>
+          <input type="number" min={1} max={12} value={referenceDate} onChange={updateReference} />
+        </ContainerFilter>
 
-      <ContainerFilter>
-        <p>Meses para filtrar: </p>
-        <input  type="number" min={1} max={12} value={referenceDate} onChange={updateReference}/>
-      </ContainerFilter>
 
-      <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito}/>
-      {/* <FiArrowLeft onClick={() => {props.func('')}}/> */}
+      <div>
+        <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
+        {/* <FiArrowLeft onClick={() => {props.func('')}}/> */}
 
-      <Chart data={data} />
+        <Chart data={data} />
+      </div>
+
+
 
     </BalanceExtractContainer>
   )

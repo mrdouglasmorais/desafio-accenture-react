@@ -1,21 +1,23 @@
-import React from 'react';
+import React from 'react'
 
-import pixIcon from '../../../assets/svgs/pix-icon.svg';
+import pixIcon from '../../../assets/svgs/pix-icon.svg'
 
 interface ComponentProp {
     title: string;
+    // eslint-disable-next-line @typescript-eslint/ban-types
     func: Function;
 }
 
 const CardMenuMobile: React.FC<ComponentProp> = ( props ) => {
 
     const changeComponent = () => {
-        props.func(props.title);
+        props.func(props.title)
     }
 
     return (
         <>
             <div onClick={changeComponent}>
+                <p>Mobile!</p>
                 <img src={pixIcon} alt="pix icon" />
                 <span>{props.title}</span>
             </div>
@@ -23,4 +25,4 @@ const CardMenuMobile: React.FC<ComponentProp> = ( props ) => {
     )
 }
 
-export default CardMenuMobile;
+export default CardMenuMobile
